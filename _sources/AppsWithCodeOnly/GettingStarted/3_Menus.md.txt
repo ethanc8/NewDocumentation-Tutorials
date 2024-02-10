@@ -1,30 +1,6 @@
-3 Menus
-=====================================================
+# 3 - Menus
 
 We are now going to add a menu to our tutorial application.
-
-  
-
-------------------------------------------------------------------------
-
-<span id="CHILD_LINKS">**Subsections**</span>
-
--   <a href="node8.html" id="tex2html94">3.1 Creating a Menu</a>
-    -   <a href="node9.html" id="tex2html95">3.1.1 Action and Target</a>
-
-      
--   <a href="node10.html" id="tex2html96">3.2 Setting the Application Menu</a>
--   <a href="node11.html" id="tex2html97">3.3 Our First Application</a>
--   <a href="node12.html" id="tex2html98">3.4 Fun with NSMenuItem's target</a>
--   <a href="node13.html" id="tex2html99">3.5 Creating sub-menus</a>
--   <a href="node14.html" id="tex2html100">3.6 Creating a standard info panel</a>
-
-  
-
-------------------------------------------------------------------------
-
-
-
 
 3.1 Creating a Menu
 -----------------------------------------------------------------

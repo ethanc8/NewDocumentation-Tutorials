@@ -1,4 +1,4 @@
-# 1. The shared application object
+# 1 - The shared application object
 
 1.1 Creating the shared NSApplication instance
 --------------------------------------------------------------------------------------------

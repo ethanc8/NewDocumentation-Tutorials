@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="2 Setting your application’s icon" href="AppIcon.html" /><link rel="prev" title="First Steps in GNUstep GUI Programming" href="index.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="3 - Menus" href="3_Menus.html" /><link rel="prev" title="1 - The shared application object" href="1_SharedApplication.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>1. The shared application object - GNUstep Tutorials 2024 documentation</title>
+        <title>2 - Setting your application’s icon - GNUstep Tutorials 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -136,7 +136,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -194,12 +194,12 @@
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps from Code Only</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">First Steps in GNUstep GUI Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">1. The shared application object</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AppIcon.html">2 Setting your application’s icon</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Menus.html">3 Menus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Windows.html">2 Adding a Window to your Application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Buttons.html">3 Adding a Button in the Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_SharedApplication.html">1 - The shared application object</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">2 - Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_Menus.html">3 - Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4_PointsSizesRectangles.html">4 - Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5_Windows.html">5 - Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_Buttons.html">6 - Adding a Button in the Window</a></li>
 </ul>
 </li>
 </ul>
@@ -234,88 +234,27 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="the-shared-application-object">
-<h1>1. The shared application object<a class="headerlink" href="#the-shared-application-object" title="Permalink to this heading">#</a></h1>
-<section id="creating-the-shared-nsapplication-instance">
-<h2>1.1 Creating the shared NSApplication instance<a class="headerlink" href="#creating-the-shared-nsapplication-instance" title="Permalink to this heading">#</a></h2>
-<p>The class <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code>, provided by the GNUstep GUI library, represents a gui application. Each gui application has one (and only one) instance of this class, which is shared by all the code; it keeps tracks of all the application windows and panels, and manages the application’s run loop. You access this shared instance by calling the <code class="docutils literal notranslate"><span class="pre">+sharedApplication</span></code> method of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code>, which creates the instance of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> representing your app the first time it is invoked, and returns the previously created instance when called again. Creating the shared application is very important, because when it is first created the gui library initializes the gnustep backend; in other words, you need to create the shared application object before doing anything at all with the gui or backend library. So, we will start our first gui application with the code:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NSApplication *myApplication;
+          <section id="setting-your-application-s-icon">
+<h1>2 - Setting your application’s icon<a class="headerlink" href="#setting-your-application-s-icon" title="Permalink to this heading">#</a></h1>
+<p>To set an icon for your app, you just need to define in your <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> the variable <code class="docutils literal notranslate"><span class="pre">xxx_APPLICATION_ICON</span></code>, where <code class="docutils literal notranslate"><span class="pre">xxx</span></code> is the name of your application. For example, if we put the source code for our application shown before (still to be completed though) in the file <code class="docutils literal notranslate"><span class="pre">MyApp.m</span></code>, and the application icon in <code class="docutils literal notranslate"><span class="pre">MyApp.png</span></code>, the <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> could be as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>include $(GNUSTEP_MAKEFILES)/common.make
 
-myApplication = [NSApplication sharedApplication];
+APP_NAME = MyApplication
+MyApplication_APPLICATION_ICON = MyApp.png
+MyApplication_RESOURCE_FILES = MyApp.png
+MyApplication_OBJC_FILES = MyApp.m 
+
+include $(GNUSTEP_MAKEFILES)/application.make
 </pre></div>
 </div>
-<p>An interesting thing to know is that, <em>after</em> you have created an <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> shared instance for your app, you can access it simply through the global variable <code class="docutils literal notranslate"><span class="pre">NSApp</span></code>. So, many people simply discard the result of <code class="docutils literal notranslate"><span class="pre">+sharedApplication</span></code>, and start their apps as follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/* The following line creates the shared application instance */
-[NSApplication sharedApplication];
-
-/* Then, use NSApp to access NSApplication&#39;s shared instance  */
-</pre></div>
-</div>
-</section>
+<p>Please note that you need to list the image in the resource files because you want it to be installed in the application directory (otherwise it can’t be found by the app at run-time).</p>
 <hr class="docutils" />
-<section id="setting-a-delegate-for-the-shared-nsapplication-instance">
-<h2>1.2 Setting a delegate for the shared NSApplication instance<a class="headerlink" href="#setting-a-delegate-for-the-shared-nsapplication-instance" title="Permalink to this heading">#</a></h2>
-<p>Once you have learnt how to create your application’s shared instance, the fastest way to develop an application is to set a <em>delegate</em> for your shared application object. This is done by using the method <code class="docutils literal notranslate"><span class="pre">-setDelegate:</span></code>, as follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id myObject;
-
-// &lt;missing: create myObject&gt;
-[NSApp setDelegate: myObject];
-</pre></div>
-</div>
-<p>A delegate is an object of your choice which can customize the behaviour of your application by implementing some (predefined) methods. For example, if you want your application to display a menu (all apps should), you just need to implement in the delegate a method called</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationWillFinishLaunching: (NSNotification *)not;
-</pre></div>
-</div>
-<p>(ignore the argument for now) and put the code to create the menu inside this method. Your shared application will check if the delegate of your choice has implemented this method, and if so it will run the method just before entering the main run loop. The documentation of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> lists all the other methods the delegate can implement to customize your application’s behaviour; we’ll learn about some of them in other tutorials.</p>
-<p>After you set the delegate of your application object, you need to run your application; to do this, just invoke the function <code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span> <span class="pre">()</span></code>, which does all for you.</p>
-<p>To sum up, here is the code we are going to use:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#include &lt;Foundation/Foundation.h&gt;
-#include &lt;AppKit/AppKit.h&gt;
-
-@interface MyDelegate : NSObject
-- (void) applicationWillFinishLaunching: (NSNotification *)not;
-@end
-
-@implementation MyDelegate
-- (void) applicationWillFinishLaunching: (NSNotification *)not
-{
-  // TODO - Create the menu here.
-}
-@end
-
-int main (int argc, const char **argv)
-{ 
-  [NSApplication sharedApplication];
-  [NSApp setDelegate: [MyDelegate new]];
-
-  return NSApplicationMain (argc, argv);
-}
-</pre></div>
-</div>
-</section>
-<hr class="docutils" />
-<section id="the-run-loop-of-your-application">
-<h2>1.3 The run loop of your application<a class="headerlink" href="#the-run-loop-of-your-application" title="Permalink to this heading">#</a></h2>
-<p>When you call <code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span> <span class="pre">()</span></code>, the GUI library ``runs’’ your application. When the application is running, the GUI library simply enters a loop waiting for events from the user (such as the user clicking on a window, on a menu, or on the application icon). It creates an autorelease pool at the beginning of each loop, and empties it at the end; this means you don’t have to worry about manually creating and emptying autorelease pools in your gui application once it is running.</p>
-<p>Of course, if you run an application without having created any windows or menus, the application will wait indefinitely since the user has no means of communicating with it.</p>
-</section>
-<hr class="docutils" />
-<section id="terminating-your-application">
-<h2>1.4 Terminating your application<a class="headerlink" href="#terminating-your-application" title="Permalink to this heading">#</a></h2>
-<p>Whenever you want to terminate your application, you can do:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[NSApp terminate: nil];
-</pre></div>
-</div>
-<p>This is usually done when the user selects the <code class="docutils literal notranslate"><span class="pre">Quit</span></code> entry in the main menu. When you terminate your application, the gui library quits the run loop and exits the program.</p>
-<p>Btw, the argument of <code class="docutils literal notranslate"><span class="pre">terminate:</span></code> is of no importance, so we can pass any argument (<code class="docutils literal notranslate"><span class="pre">nil</span></code> in this case); the only reason why this method takes an object as argument is that it can then be set as the <code class="docutils literal notranslate"><span class="pre">action</span></code> of a gui control (discussed below).</p>
-<hr class="docutils" />
-</section>
 </section>
 
         </article>
@@ -323,23 +262,23 @@ int main (int argc, const char **argv)
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="AppIcon.html">
+          <a class="next-page" href="3_Menus.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">2 Setting your application’s icon</div>
+                <div class="title">3 - Menus</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="index.html">
+          <a class="prev-page" href="1_SharedApplication.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">First Steps in GNUstep GUI Programming</div>
+                <div class="title">1 - The shared application object</div>
                 
               </div>
             </a>
@@ -361,30 +300,8 @@ int main (int argc, const char **argv)
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">1. The shared application object</a><ul>
-<li><a class="reference internal" href="#creating-the-shared-nsapplication-instance">1.1 Creating the shared NSApplication instance</a></li>
-<li><a class="reference internal" href="#setting-a-delegate-for-the-shared-nsapplication-instance">1.2 Setting a delegate for the shared NSApplication instance</a></li>
-<li><a class="reference internal" href="#the-run-loop-of-your-application">1.3 The run loop of your application</a></li>
-<li><a class="reference internal" href="#terminating-your-application">1.4 Terminating your application</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="3 Adding a Button in the Window" href="Buttons.html" /><link rel="prev" title="1 Points, Sizes and Rectangles" href="PointsSizesRectangles.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="2 - Setting your application’s icon" href="2_AppIcon.html" /><link rel="prev" title="First Steps in GNUstep GUI Programming" href="index.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>2 Adding a Window to your Application - GNUstep Tutorials 2024 documentation</title>
+        <title>1 - The shared application object - GNUstep Tutorials 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -194,12 +194,12 @@
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps from Code Only</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">First Steps in GNUstep GUI Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="SharedApplication.html">1. The shared application object</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AppIcon.html">2 Setting your application’s icon</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Menus.html">3 Menus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">2 Adding a Window to your Application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Buttons.html">3 Adding a Button in the Window</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">1 - The shared application object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_AppIcon.html">2 - Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_Menus.html">3 - Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4_PointsSizesRectangles.html">4 - Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5_Windows.html">5 - Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_Buttons.html">6 - Adding a Button in the Window</a></li>
 </ul>
 </li>
 </ul>
@@ -240,181 +240,52 @@
           </label>
         </div>
         <article role="main">
-          <section id="adding-a-window-to-your-application">
-<h1>2 Adding a Window to your Application<a class="headerlink" href="#adding-a-window-to-your-application" title="Permalink to this heading">#</a></h1>
-<hr class="docutils" />
-<p><span id="CHILD_LINKS"><strong>Subsections</strong></span></p>
-<ul class="simple">
-<li><p><a href="node7.html" id="tex2html88">2.1 Window Attributes</a></p></li>
-<li><p><a href="node8.html" id="tex2html89">2.2 Creating a Window</a></p></li>
-<li><p><a href="node9.html" id="tex2html90">2.3 Setting the title of a window</a></p></li>
-<li><p><a href="node10.html" id="tex2html91">2.4 Ordering Front a window</a></p></li>
-<li><p><a href="node11.html" id="tex2html92">2.5 Integrating the window with your application</a></p>
-<ul>
-<li><p><a href="node12.html" id="tex2html93">2.5.1 The organization of start-up code</a></p></li>
-</ul>
-</li>
-<li><p><a href="node13.html" id="tex2html94">2.6 Source Code</a></p></li>
-</ul>
-<hr class="docutils" />
-<section id="window-attributes">
-<h2>2.1 Window Attributes<a class="headerlink" href="#window-attributes" title="Permalink to this heading">#</a></h2>
-<p>Windows are represented in GNUstep by <code class="docutils literal notranslate"><span class="pre">NSWindow</span></code> objects. We are mainly interested in two attributes of a <code class="docutils literal notranslate"><span class="pre">NSWindow</span></code> object:</p>
-<ol class="arabic">
-<li><p>its <em>content rect</em>, which is a <code class="docutils literal notranslate"><span class="pre">NSRect</span></code> describing the rectangle covered by the internal area of the window; i.e., without all the decorations added by the window manager (title bar, border, etc);</p></li>
-<li><p>its <em>style mask</em>, which is an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code> describing the decorations of the window. A zero style mask is also known as a <code class="docutils literal notranslate"><span class="pre">NSBorderlessWindowMask</span></code>, and means that the window has no decorations at all. If the window needs to have decorations, you need to set its style mask to a combination (<code class="docutils literal notranslate"><span class="pre">OR</span></code>) of one or more of the following constants:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">NSTitledWindowMask</span></code> = the window has a title bar;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NSClosableWindowMask</span></code> = the window can be closed by the user (it has a close button);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NSMiniaturizableWindowMask</span></code> = the window can be miniaturized by the user (it has a miniaturize button);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NSResizableWindowMask</span></code> = the window can be resized by the user.</p></li>
-</ul>
-<p>For example, a window which has a title bar, is closable and miniaturizable will have a style mask of:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>unsigned int windowMask = NSTitledWindowMask 
-                          | NSClosableWindowMask 
-                          | NSMiniaturizableWindowMask;
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">|</span></code> is the C operator for the logical OR.</p>
-</li>
-</ol>
-<p>While you might freely change the content rect of your window after the window has been created, you can only set the style mask when the window is first created. You can not change the style mask of the window after creation.</p>
-</section>
-<hr class="docutils" />
-<section id="creating-a-window">
-<h2>2.2 Creating a Window<a class="headerlink" href="#creating-a-window" title="Permalink to this heading">#</a></h2>
-<p>We are now ready to show an example of creating a window:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NSWindow *myWindow;
-NSRect rect = NSMakeRect (100, 100, 200, 200);
-unsigned int styleMask = NSTitledWindowMask 
-                         | NSMiniaturizableWindowMask;
+          <section id="the-shared-application-object">
+<h1>1 - The shared application object<a class="headerlink" href="#the-shared-application-object" title="Permalink to this heading">#</a></h1>
+<section id="creating-the-shared-nsapplication-instance">
+<h2>1.1 Creating the shared NSApplication instance<a class="headerlink" href="#creating-the-shared-nsapplication-instance" title="Permalink to this heading">#</a></h2>
+<p>The class <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code>, provided by the GNUstep GUI library, represents a gui application. Each gui application has one (and only one) instance of this class, which is shared by all the code; it keeps tracks of all the application windows and panels, and manages the application’s run loop. You access this shared instance by calling the <code class="docutils literal notranslate"><span class="pre">+sharedApplication</span></code> method of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code>, which creates the instance of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> representing your app the first time it is invoked, and returns the previously created instance when called again. Creating the shared application is very important, because when it is first created the gui library initializes the gnustep backend; in other words, you need to create the shared application object before doing anything at all with the gui or backend library. So, we will start our first gui application with the code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NSApplication *myApplication;
 
-myWindow = [NSWindow alloc];
-myWindow = [myWindow initWithContentRect: rect
-                     styleMask: styleMask
-                     backing: NSBackingStoreBuffered
-                     defer: NO];
+myApplication = [NSApplication sharedApplication];
 </pre></div>
 </div>
-<p>(Please ignore the <code class="docutils literal notranslate"><span class="pre">backing:</span></code> and <code class="docutils literal notranslate"><span class="pre">defer:</span></code> arguments for now. The values given in the example are appropriate in most cases). This window has an initial content rect which has its origin (its lower left corner) positioned in the point of coordinates (100, 100) in the screen coordinates. In GNUstep, all coordinates system are by default Cartesian and the origin is always in the lower left corner (this is only the default, because inside a GNUstep window you can then flip, rotate and (more generally) transform coordinates at your wish). The window has a title bar, and can be miniaturized by the user, but not resized or closed.</p>
-</section>
-<hr class="docutils" />
-<section id="setting-the-title-of-a-window">
-<h2>2.3 Setting the title of a window<a class="headerlink" href="#setting-the-title-of-a-window" title="Permalink to this heading">#</a></h2>
-<p>To set the title of the window <code class="docutils literal notranslate"><span class="pre">myWindow</span></code>, you simply do something like:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[myWindow setTitle: @&quot;This is a test window&quot;];
+<p>An interesting thing to know is that, <em>after</em> you have created an <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> shared instance for your app, you can access it simply through the global variable <code class="docutils literal notranslate"><span class="pre">NSApp</span></code>. So, many people simply discard the result of <code class="docutils literal notranslate"><span class="pre">+sharedApplication</span></code>, and start their apps as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/* The following line creates the shared application instance */
+[NSApplication sharedApplication];
+
+/* Then, use NSApp to access NSApplication&#39;s shared instance  */
 </pre></div>
 </div>
 </section>
 <hr class="docutils" />
-<section id="ordering-front-a-window">
-<h2>2.4 Ordering Front a window<a class="headerlink" href="#ordering-front-a-window" title="Permalink to this heading">#</a></h2>
-<p>Creating a window does not make it visible. The window is ready to be used, but it is not visible till you invoke the <code class="docutils literal notranslate"><span class="pre">orderFront:</span></code> method, as in:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[myWindow orderFront: nil];
+<section id="setting-a-delegate-for-the-shared-nsapplication-instance">
+<h2>1.2 Setting a delegate for the shared NSApplication instance<a class="headerlink" href="#setting-a-delegate-for-the-shared-nsapplication-instance" title="Permalink to this heading">#</a></h2>
+<p>Once you have learnt how to create your application’s shared instance, the fastest way to develop an application is to set a <em>delegate</em> for your shared application object. This is done by using the method <code class="docutils literal notranslate"><span class="pre">-setDelegate:</span></code>, as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id myObject;
+
+// &lt;missing: create myObject&gt;
+[NSApp setDelegate: myObject];
 </pre></div>
 </div>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">orderFront:</span></code> takes an object argument so that it can be invoked as an <em>action</em> from a button or a menu item, but the argument is usually ignored, which is why we simply use <code class="docutils literal notranslate"><span class="pre">nil</span></code> for it.</p>
-<p>If you want your window to be ordered front and to get the keyboard focus, you do:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[myWindow makeKeyAndOrderFront: nil];
-</pre></div>
-</div>
-</section>
-<hr class="docutils" />
-<section id="integrating-the-window-with-your-application">
-<h2>2.5 Integrating the window with your application<a class="headerlink" href="#integrating-the-window-with-your-application" title="Permalink to this heading">#</a></h2>
-<p>We now want to show a very simple example of an application creating a single window. Our application will be useless if its only window is not visible; for this reason, we do not add a close button to the window (following the <em>NEXTSTEP</em> tradition, the user needs to select <em>Quit</em> from the main menu to quit the application. To get the main menu, the user typically clicks the right button of his mouse on one of the windows).</p>
-<p>We can create the window in the same method</p>
+<p>A delegate is an object of your choice which can customize the behaviour of your application by implementing some (predefined) methods. For example, if you want your application to display a menu (all apps should), you just need to implement in the delegate a method called</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationWillFinishLaunching: (NSNotification *)not;
 </pre></div>
 </div>
-<p>where we created the menu. This method contains initialization code to be run <em>before</em> the application is launched.</p>
-<p>But, we can’t order front (ie, make visible) windows before <code class="docutils literal notranslate"><span class="pre">NSApp</span></code> has become active (which happens when the application is `launched’), so that ordering front our window in <code class="docutils literal notranslate"><span class="pre">applicationWillFinishLaunching:</span></code> would not work, because this method is called <em>before</em> the application finished launching.</p>
-<p>To get around this problem, we implement in our application delegate also another method, called:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationDidFinishLaunching: (NSNotification *)not;
-</pre></div>
-</div>
-<p>This method (if implemented by the application’s delegate) is invoked by the <code class="docutils literal notranslate"><span class="pre">NSApp</span></code> just after it finished launching. We order front our window in this method.</p>
-<hr class="docutils" />
-<p><span id="CHILD_LINKS"><strong>Subsections</strong></span></p>
-<ul class="simple">
-<li><p><a href="node12.html" id="tex2html145">2.5.1 The organization of start-up code</a></p></li>
-</ul>
-<hr class="docutils" />
-<section id="the-organization-of-start-up-code">
-<h3>2.5.1 The organization of start-up code<a class="headerlink" href="#the-organization-of-start-up-code" title="Permalink to this heading">#</a></h3>
-<p>The way we have organized the start-up of our application is as follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationWillFinishLaunching: (NSNotification *)not;
-</pre></div>
-</div>
-<p>contains code for the initialization process of the application. This usually means creating the application’s main objects; in our case, the menu and the only application’s window. You can’t (and shouldn’t) display any window in this method.</p>
-<p>Instead, the method</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationDidFinishLaunching: (NSNotification *)not;
-</pre></div>
-</div>
-<p>contains a sequence of user-visible actions to be taken just after the application became active: typically, popping up a window or a panel to the user.</p>
-<p>It should be mentioned that this is not the only possible way of organizing the start-up of an application.</p>
-</section>
-</section>
-<hr class="docutils" />
-<section id="source-code">
-<h2>2.6 Source Code<a class="headerlink" href="#source-code" title="Permalink to this heading">#</a></h2>
-<p>Here is the source code of our new application:</p>
+<p>(ignore the argument for now) and put the code to create the menu inside this method. Your shared application will check if the delegate of your choice has implemented this method, and if so it will run the method just before entering the main run loop. The documentation of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> lists all the other methods the delegate can implement to customize your application’s behaviour; we’ll learn about some of them in other tutorials.</p>
+<p>After you set the delegate of your application object, you need to run your application; to do this, just invoke the function <code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span> <span class="pre">()</span></code>, which does all for you.</p>
+<p>To sum up, here is the code we are going to use:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#include &lt;Foundation/Foundation.h&gt;
 #include &lt;AppKit/AppKit.h&gt;
 
 @interface MyDelegate : NSObject
-{
-  NSWindow *myWindow;
-}
-- (void) createMenu;
-- (void) createWindow;
 - (void) applicationWillFinishLaunching: (NSNotification *)not;
-- (void) applicationDidFinishLaunching: (NSNotification *)not;
 @end
 
-@implementation MyDelegate : NSObject 
-- (void) dealloc
-{
-  RELEASE (myWindow);
-}
-
-- (void) createMenu
-{
-  NSMenu *menu;
-
-  menu = AUTORELEASE ([NSMenu new]);
-
-  [menu addItemWithTitle: @&quot;Quit&quot;  
-        action: @selector (terminate:)  
-        keyEquivalent: @&quot;q&quot;];
-
-  [NSApp setMainMenu: menu];
-}
-
-- (void) createWindow
-{
-  NSRect rect = NSMakeRect (100, 100, 200, 200);
-  unsigned int styleMask = NSTitledWindowMask 
-                           | NSMiniaturizableWindowMask;
-
-
-  myWindow = [NSWindow alloc];
-  myWindow = [myWindow initWithContentRect: rect
-                       styleMask: styleMask
-                       backing: NSBackingStoreBuffered
-                       defer: NO];
-  [myWindow setTitle: @&quot;This is a test window&quot;];
-}
-
+@implementation MyDelegate
 - (void) applicationWillFinishLaunching: (NSNotification *)not
 {
-  [self createMenu];
-  [self createWindow];
-}
-
-- (void) applicationDidFinishLaunching: (NSNotification *)not;
-{
-  [myWindow makeKeyAndOrderFront: nil];
+  // TODO - Create the menu here.
 }
 @end
 
@@ -427,17 +298,22 @@ int main (int argc, const char **argv)
 }
 </pre></div>
 </div>
-<p>To make the code easier to read and to understand, we have moved all the code creating the menu into a <code class="docutils literal notranslate"><span class="pre">createMenu</span></code> method, and the code creating the window into a <code class="docutils literal notranslate"><span class="pre">createWindow</span></code> method.</p>
-<p>We have also implemented the <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> method, which is quite useless in this case, because we create only one <code class="docutils literal notranslate"><span class="pre">MyDelegate</span></code> object, which is only released when the application quits (there is few interest in releasing memory when the application is quitting, since all memory is going to be released anyway). But it is good programming practice to always implement <code class="docutils literal notranslate"><span class="pre">dealloc</span></code>; this method should release all the resources that the object was using. In this case, we only need to release the window object. Please refer to the Memory Management tutorial [yet to be written *grin*] for more information on the <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> method.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> is the usual one:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>include $(GNUSTEP_MAKEFILES)/common.make
-
-APP_NAME = WindowApp
-WindowApp_OBJC_FILES = MyApp.m 
-
-include $(GNUSTEP_MAKEFILES)/application.make
+</section>
+<hr class="docutils" />
+<section id="the-run-loop-of-your-application">
+<h2>1.3 The run loop of your application<a class="headerlink" href="#the-run-loop-of-your-application" title="Permalink to this heading">#</a></h2>
+<p>When you call <code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span> <span class="pre">()</span></code>, the GUI library ``runs’’ your application. When the application is running, the GUI library simply enters a loop waiting for events from the user (such as the user clicking on a window, on a menu, or on the application icon). It creates an autorelease pool at the beginning of each loop, and empties it at the end; this means you don’t have to worry about manually creating and emptying autorelease pools in your gui application once it is running.</p>
+<p>Of course, if you run an application without having created any windows or menus, the application will wait indefinitely since the user has no means of communicating with it.</p>
+</section>
+<hr class="docutils" />
+<section id="terminating-your-application">
+<h2>1.4 Terminating your application<a class="headerlink" href="#terminating-your-application" title="Permalink to this heading">#</a></h2>
+<p>Whenever you want to terminate your application, you can do:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[NSApp terminate: nil];
 </pre></div>
 </div>
+<p>This is usually done when the user selects the <code class="docutils literal notranslate"><span class="pre">Quit</span></code> entry in the main menu. When you terminate your application, the gui library quits the run loop and exits the program.</p>
+<p>Btw, the argument of <code class="docutils literal notranslate"><span class="pre">terminate:</span></code> is of no importance, so we can pass any argument (<code class="docutils literal notranslate"><span class="pre">nil</span></code> in this case); the only reason why this method takes an object as argument is that it can then be set as the <code class="docutils literal notranslate"><span class="pre">action</span></code> of a gui control (discussed below).</p>
 <hr class="docutils" />
 </section>
 </section>
@@ -447,23 +323,23 @@ include $(GNUSTEP_MAKEFILES)/application.make
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="Buttons.html">
+          <a class="next-page" href="2_AppIcon.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">3 Adding a Button in the Window</div>
+                <div class="title">2 - Setting your application’s icon</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="PointsSizesRectangles.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">1 Points, Sizes and Rectangles</div>
+                <div class="title">First Steps in GNUstep GUI Programming</div>
                 
               </div>
             </a>
@@ -497,16 +373,11 @@ include $(GNUSTEP_MAKEFILES)/application.make
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">2 Adding a Window to your Application</a><ul>
-<li><a class="reference internal" href="#window-attributes">2.1 Window Attributes</a></li>
-<li><a class="reference internal" href="#creating-a-window">2.2 Creating a Window</a></li>
-<li><a class="reference internal" href="#setting-the-title-of-a-window">2.3 Setting the title of a window</a></li>
-<li><a class="reference internal" href="#ordering-front-a-window">2.4 Ordering Front a window</a></li>
-<li><a class="reference internal" href="#integrating-the-window-with-your-application">2.5 Integrating the window with your application</a><ul>
-<li><a class="reference internal" href="#the-organization-of-start-up-code">2.5.1 The organization of start-up code</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#source-code">2.6 Source Code</a></li>
+<li><a class="reference internal" href="#">1 - The shared application object</a><ul>
+<li><a class="reference internal" href="#creating-the-shared-nsapplication-instance">1.1 Creating the shared NSApplication instance</a></li>
+<li><a class="reference internal" href="#setting-a-delegate-for-the-shared-nsapplication-instance">1.2 Setting a delegate for the shared NSApplication instance</a></li>
+<li><a class="reference internal" href="#the-run-loop-of-your-application">1.3 The run loop of your application</a></li>
+<li><a class="reference internal" href="#terminating-your-application">1.4 Terminating your application</a></li>
 </ul>
 </li>
 </ul>
