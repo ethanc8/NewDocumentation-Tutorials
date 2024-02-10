@@ -55,9 +55,9 @@ Topics:
 * Configuring your app
 * Notifications
 
-## Money - a document-based application
+## 4 - Money - a document-based application
 
-[Read online](http://gnustep.made-it.com/GSPT/xml/Tutorial_en.html#AEN907)
+[Read it here](4_Money/index.md)
 
 Topics:
 * Document-based applications
@@ -65,18 +65,25 @@ Topics:
 * Loading and saving
 * Drag and drop
 
-## Overview - outline views
+## 5 - Overview - outline views
 
-[Read online](http://gnustep.made-it.com/GSPT/xml/Tutorial_en.html#AEN1177)
+[Read it here](5_Overview/index.md)
 
 Topics:
 * Outline views
 * Getting system information
 
-## LunarCalendar - matrices
+## 6 - LunarCalendar - matrices
 
-[Read online](http://gnustep.made-it.com/GSPT/xml/Tutorial_en.html#AEN1279)
+[Read it here](6_LunarCalendar/index.md)
 
 Topics:
 * Custom views
 * Matrices
+
+## 7 - NSLookupService - services
+
+[Read it here](7_NSLookupService/index.md)
+
+Topics:
+* Services
