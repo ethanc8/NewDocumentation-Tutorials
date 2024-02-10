@@ -1,21 +1,19 @@
-2 Adding a Window to your Application
-===================================================================================
-
+# 5 - Adding a Window to your Application
   
 
 ------------------------------------------------------------------------
 
 <span id="CHILD_LINKS">**Subsections**</span>
 
--   <a href="node7.html" id="tex2html88">2.1 Window Attributes</a>
--   <a href="node8.html" id="tex2html89">2.2 Creating a Window</a>
--   <a href="node9.html" id="tex2html90">2.3 Setting the title of a window</a>
--   <a href="node10.html" id="tex2html91">2.4 Ordering Front a window</a>
--   <a href="node11.html" id="tex2html92">2.5 Integrating the window with your application</a>
-    -   <a href="node12.html" id="tex2html93">2.5.1 The organization of start-up code</a>
+-   <a href="node7.html" id="tex2html88">5.1 Window Attributes</a>
+-   <a href="node8.html" id="tex2html89">5.2 Creating a Window</a>
+-   <a href="node9.html" id="tex2html90">5.3 Setting the title of a window</a>
+-   <a href="node10.html" id="tex2html91">5.4 Ordering Front a window</a>
+-   <a href="node11.html" id="tex2html92">5.5 Integrating the window with your application</a>
+    -   <a href="node12.html" id="tex2html93">5.5.1 The organization of start-up code</a>
 
       
--   <a href="node13.html" id="tex2html94">2.6 Source Code</a>
+-   <a href="node13.html" id="tex2html94">5.6 Source Code</a>
 
   
 
@@ -24,7 +22,7 @@
 
 
 
-2.1 Window Attributes
+5.1 Window Attributes
 -------------------------------------------------------------------
 
 Windows are represented in GNUstep by `NSWindow` objects. We are mainly interested in two attributes of a `NSWindow` object:
@@ -55,7 +53,7 @@ While you might freely change the content rect of your window after the window h
 
 
 
-2.2 Creating a Window
+5.2 Creating a Window
 -------------------------------------------------------------------
 
 We are now ready to show an example of creating a window:
@@ -80,7 +78,7 @@ We are now ready to show an example of creating a window:
 
 
 
-2.3 Setting the title of a window
+5.3 Setting the title of a window
 -------------------------------------------------------------------------------
 
 To set the title of the window `myWindow`, you simply do something like:
@@ -94,7 +92,7 @@ To set the title of the window `myWindow`, you simply do something like:
 
 
 
-2.4 Ordering Front a window
+5.4 Ordering Front a window
 -------------------------------------------------------------------------
 
 Creating a window does not make it visible. The window is ready to be used, but it is not visible till you invoke the `orderFront:` method, as in:
@@ -114,7 +112,7 @@ If you want your window to be ordered front and to get the keyboard focus, you d
 
 
 
-2.5 Integrating the window with your application
+5.5 Integrating the window with your application
 ----------------------------------------------------------------------------------------------
 
 We now want to show a very simple example of an application creating a single window. Our application will be useless if its only window is not visible; for this reason, we do not add a close button to the window (following the *NEXTSTEP* tradition, the user needs to select *Quit* from the main menu to quit the application. To get the main menu, the user typically clicks the right button of his mouse on one of the windows).
@@ -139,7 +137,7 @@ This method (if implemented by the application's delegate) is invoked by the `NS
 
 <span id="CHILD_LINKS">**Subsections**</span>
 
--   <a href="node12.html" id="tex2html145">2.5.1 The organization of start-up code</a>
+-   <a href="node12.html" id="tex2html145">5.5.1 The organization of start-up code</a>
 
 ------------------------------------------------------------------------
 
@@ -148,7 +146,7 @@ This method (if implemented by the application's delegate) is invoked by the `NS
 
 
 
-### 2.5.1 The organization of start-up code
+### 5.5.1 The organization of start-up code
 
 The way we have organized the start-up of our application is as follows:
 
@@ -171,7 +169,7 @@ It should be mentioned that this is not the only possible way of organizing the 
 
 
 
-2.6 Source Code
+5.6 Source Code
 -------------------------------------------------------------
 
 Here is the source code of our new application:

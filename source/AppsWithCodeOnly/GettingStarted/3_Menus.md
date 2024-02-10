@@ -1,5 +1,4 @@
-3 Menus
-=====================================================
+# 3 - Menus
 
 We are now going to add a menu to our tutorial application.
 

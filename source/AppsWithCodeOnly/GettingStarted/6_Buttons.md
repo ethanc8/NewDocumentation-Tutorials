@@ -1,6 +1,4 @@
-
-3 Adding a Button in the Window
-=============================================================================
+# 6 - Adding a Button in the Window
 
 We are now going to add a button inside our window. But first, we need to prepare the ground with a very short introduction to the wonderful `NSView` class.
 
@@ -10,10 +8,10 @@ We are now going to add a button inside our window. But first, we need to prepar
 
 <span id="CHILD_LINKS">**Subsections**</span>
 
--   <a href="node15.html" id="tex2html172">3.1 A Quick Introduction to Views</a>
--   <a href="node16.html" id="tex2html173">3.2 Creating a Button</a>
--   <a href="node17.html" id="tex2html174">3.3 Putting the button in the window</a>
--   <a href="node18.html" id="tex2html175">3.4 Source Code</a>
+-   <a href="node15.html" id="tex2html172">6.1 A Quick Introduction to Views</a>
+-   <a href="node16.html" id="tex2html173">6.2 Creating a Button</a>
+-   <a href="node17.html" id="tex2html174">6.3 Putting the button in the window</a>
+-   <a href="node18.html" id="tex2html175">6.4 Source Code</a>
 
   
 
@@ -22,7 +20,7 @@ We are now going to add a button inside our window. But first, we need to prepar
 
 
 
-3.1 A Quick Introduction to Views
+6.1 A Quick Introduction to Views
 -------------------------------------------------------------------------------
 
 `NSView` is a class whose objects represent a rectangular area in a window. Each `NSView` has its own internal coordinate system; `NSView` provides a complete framework for managing the rectangle represented by the view, its coordinate system, and for drawing and getting user events inside the view's rectangle.
@@ -40,7 +38,7 @@ If you want to have a view which covers only a part of a window, you need to add
 
 
 
-3.2 Creating a Button
+6.2 Creating a Button
 -------------------------------------------------------------------
 
 Creating a button is quite easy:
@@ -67,7 +65,7 @@ Next, we need to set target and action of the button:
 
 
 
-3.3 Putting the button in the window
+6.3 Putting the button in the window
 ----------------------------------------------------------------------------------
 
 We now need to modify our code to create the window so that it creates a window exactly of the right size to contain our button. First, we need to get the size of the button:
@@ -97,7 +95,7 @@ At this point, we just create the window as before, but using this rectangle (fu
 
 
 
-3.4 Source Code
+6.4 Source Code
 -------------------------------------------------------------
 
 We are ready to show the whole source code (the `GNUmakefile` is the usual one):

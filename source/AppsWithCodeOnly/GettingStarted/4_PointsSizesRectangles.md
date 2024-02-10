@@ -1,5 +1,4 @@
-1 Points, Sizes and Rectangles
-============================================================================
+# 4 - Points, Sizes and Rectangles
 
 The GNUstep base library defines some useful structs for dealing with two dimensional geometry: `NSPoint`, `NSSize` and `NSRect`. It is worth to quickly review them here, before beginning.
 
@@ -9,10 +8,10 @@ The GNUstep base library defines some useful structs for dealing with two dimens
 
 <span id="CHILD_LINKS">**Subsections**</span>
 
--   <a href="node2.html" id="tex2html36">1.1 NSPoint</a>
--   <a href="node3.html" id="tex2html37">1.2 NSSize</a>
--   <a href="node4.html" id="tex2html38">1.3 NSRect</a>
--   <a href="node5.html" id="tex2html39">1.4 Geometry Functions</a>
+-   <a href="node2.html" id="tex2html36">4.1 NSPoint</a>
+-   <a href="node3.html" id="tex2html37">4.2 NSSize</a>
+-   <a href="node4.html" id="tex2html38">4.3 NSRect</a>
+-   <a href="node5.html" id="tex2html39">4.4 Geometry Functions</a>
 
   
 
@@ -21,7 +20,7 @@ The GNUstep base library defines some useful structs for dealing with two dimens
 
 
 
-1.1 NSPoint
+4.1 NSPoint
 ---------------------------------------------------------
 
 A `NSPoint` is defined as a struct with two members, the *x* and *y* coordinate of the point:
@@ -51,7 +50,7 @@ It might be worth quoting the (predefined) constant `NSZeroPoint`, which is a po
 
 
 
-1.2 NSSize
+4.2 NSSize
 --------------------------------------------------------
 
 An `NSSize` is a struct describing the size of a rectangle, regardless of its position.
@@ -79,7 +78,7 @@ Using `NSSize` is completely analogous to using `NSPoint`, as in the following c
 
 
 
-1.3 NSRect
+4.3 NSRect
 --------------------------------------------------------
 
 An `NSRect` is a struct describing both the position and the size of a rectangle:
@@ -111,7 +110,7 @@ The constant `NSZeroRect` represents a rect with `NSZeroPoint` `origin` and `NSZ
 
 
 
-1.4 Geometry Functions
+4.4 Geometry Functions
 --------------------------------------------------------------------
 
 The GNUstep base library provides functions and macros to do all the most common geometry operations on `NSPoint`s, `NSSize`s and `NSRect`s (such as determining if a point is contained in a rectangle, computing the intersection of two rectangles, etc). It would be off topic to discuss them here; please refer to the base library documentation whenever you need to do some of these common geometrical operations.

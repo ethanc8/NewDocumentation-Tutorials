@@ -1,5 +1,4 @@
-2 Setting your application's icon
-===============================================================================
+# 2 - Setting your application's icon
 
 To set an icon for your app, you just need to define in your `GNUmakefile` the variable `xxx_APPLICATION_ICON`, where `xxx` is the name of your application. For example, if we put the source code for our application shown before (still to be completed though) in the file `MyApp.m`, and the application icon in `MyApp.png`, the `GNUmakefile` could be as follows:
 
