@@ -1,0 +1,697 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="6 - LunarCalendar" href="../6_LunarCalendar/index.html" /><link rel="prev" title="4.4 - Drag and Drop" href="../4_Money/4.4.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
+        <title>5 - Overview - GNUstep Tutorials 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">GNUstep Tutorials 2024 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">GNUstep Tutorials 2024 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ObjectiveCIntro/index.html">Introduction to Objective-C</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps with GORM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Building Apps with GORM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1_Intro/index.html">1 - Introduction to GNUstep Programming</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../2_Convertor/index.html">2 - Convertor</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 2 - Convertor</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.1.html">2.1 - Designing the UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.2.html">2.2 - Outlets and Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.3.html">2.3 - Adding the Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../3_TimeMachine/index.html">3 - TimeMachine - a single window application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 3 - TimeMachine - a single window application</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.1.html">3.1 - A Basic Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.2.html">3.2 - Analog Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.3.html">3.3 - New Time Zone Dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.4.html">3.4 - Multiple Clocks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../4_Money/index.html">4 - Money</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 4 - Money</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.1.html">4.1 - The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.2.html">4.2 - Document Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.3.html">4.3 - Load and Save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.4.html">4.4 - Drag and Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">5 - Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6_LunarCalendar/index.html">6 - LunarCalendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7_NSLocalizationService/index.html">7 - NSLocalizationService</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Todo/index.html">Todo.app</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Todo.app</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial1.html">1 - Programming under GNUstep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial2.html">2 - NSWindowController and Design Pattern MVC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../HelpfulWebsites.html">Helpful Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/index.html">Building Apps from Code Only</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/index.html">First Steps in GNUstep GUI Programming</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/SharedApplication.html">1. The shared application object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/AppIcon.html">2 Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Menus.html">3 Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Windows.html">2 Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Buttons.html">3 Adding a Button in the Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../AppsWithRenaissance/index.html">Building Apps with Renaissance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CommandLineTools/index.html">Command-Line Tools</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="overview">
+<h1>5 - Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
+<p>NSOutlineView is a subclass of NSTableView. The only difference is that
+the rows of NSOutlineView act like a data-structure tree of multiple
+children. In NSTableView, we can use an array of dictionary to store the
+data of NSTableView. In NSOutlineView, we need a tree strcuture. Here, I
+will make an application to display several system information in
+outline view.</p>
+<p>First, create “New Application” in Gorm and drag a NSOutlineView into
+the window</p>
+<p><strong>Figure 4-44. Interface of Overview</strong></p>
+<p><img alt="" src="../../_images/Overview-01.jpg" /></p>
+<p>Change the Autoresizing attribute of NSOutlineView</p>
+<p><strong>Figure 4-45. Autoresizing attribute of NSOutlineView</strong></p>
+<p><img alt="" src="../../_images/Overview-02.jpg" /></p>
+<p>Double-click on the column to select</p>
+<p><strong>Figure 4-46. Select column in NSOutlineView</strong></p>
+<p><img alt="" src="../../_images/Overview-03.jpg" /></p>
+<p>Uncheck the “Editable” and change the identifier to “Attribute” in the
+first column and “Value” in the second column</p>
+<p><strong>Figure 4-47. Change attribute of NSTableColumn</strong></p>
+<p><img alt="" src="../../_images/Overview-04.jpg" /></p>
+<p>The makeing of interface is done. Now, I need a controller for the
+interface. Create a subclass of NSObject, called “Controller”</p>
+<p><strong>Figure 4-48. Create subclass in Gorm</strong></p>
+<p><img alt="" src="../../_images/Overview-05.jpg" /></p>
+<p>Add a outlet called “outlineview”</p>
+<p><strong>Figure 4-49. Create outlet</strong></p>
+<p><img alt="" src="../../_images/Overview-06.jpg" /></p>
+<p>Create an instance of Controller, and connect the outlet “outlineview”
+to the outline view in the window. Be sure that you connect to outline
+view, not the scroll view or the table column</p>
+<p><strong>Figure 4-50. Connect outlet to NSOutlineView</strong></p>
+<p><img alt="" src="../../_images/Overview-07.jpg" /></p>
+<p>Since NSOutlineView is the subclass of NSTableView, we need to assing
+the data source and delegate of NSOutlineView by connecting the
+“dataSource” and “delegate” from NSOutlineView to Controller.</p>
+<p><strong>Figure 4-51. Connect data source of NSOutlineView</strong></p>
+<p><img alt="" src="../../_images/Overview-08.jpg" /></p>
+<p>Finally, we can assign Controller as the delegate of NSApp</p>
+<p><strong>Figure 4-52. Assign delegate of NSApp</strong></p>
+<p><img alt="" src="../../_images/Overview-09.jpg" /></p>
+<p>Now, save the Gorm file as “Overview.gorm”, and generate the files of
+Controller.</p>
+<p>I need a data source for the NSOutlineView. I can do that by creating a
+tree sturcture with very simple nodes</p>
+<p><code class="docutils literal notranslate"><span class="pre">Node.h</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef _Overview_Node_</span>
+<span class="cp">#define _Overview_Node_</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/NSObject.h&gt;</span>
+
+<span class="k">@class</span> <span class="bp">NSArray</span>;
+<span class="k">@class</span> <span class="bp">NSMutableArray</span>;
+<span class="k">@class</span> <span class="bp">NSString</span>;
+
+<span class="k">@interface</span> <span class="nc">Node</span>: <span class="bp">NSObject</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="w">  </span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">value</span><span class="p">;</span>
+<span class="w">  </span><span class="bp">NSMutableArray</span><span class="w"> </span><span class="o">*</span><span class="n">children</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setName:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">name</span><span class="p">;</span>
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">name</span><span class="p">;</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setValue:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">value</span><span class="p">;</span>
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">value</span><span class="p">;</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">addChild:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">child</span><span class="p">;</span>
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">children</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="cp">#endif </span><span class="cm">/* _Overview_Node_ */</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Node.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Node.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/Foundation.h&gt;</span>
+
+<span class="k">@implementation</span> <span class="nc">Node</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nb">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nb">super</span><span class="w"> </span><span class="n">init</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSMutableArray</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setName:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">string</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">ASSIGN</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">name</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setValue:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">string</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">ASSIGN</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">value</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">addChild:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">child</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="p">[</span><span class="n">children</span><span class="w"> </span><span class="n">addObject</span><span class="o">:</span><span class="w"> </span><span class="n">child</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">children</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">children</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">children</span><span class="p">);</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">super</span><span class="w"> </span><span class="n">dealloc</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></div>
+</div>
+<p>Now, I can build a tree by connect these nodes</p>
+<p>In NSTableView, there are two necessary methods to display the data:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="nf">numberOfRowsInTableView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSTableView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">tableView</span><span class="p">;</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">tableView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSTableView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">tableView</span>
+<span class="w">       </span><span class="nl">objectValueForTableColumn</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">NSTableColumn</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">column</span>
+<span class="w">       </span><span class="nl">row</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="nv">row</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In NSOutlineView, due to the tree-like structure, there are 4 mecessary
+methods to display the data:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="nv">outlineView</span><span class="w"> </span>
+<span class="w">            </span><span class="nl">child</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">index</span><span class="w"> </span>
+<span class="w">           </span><span class="nl">ofItem</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="nv">outlineView</span>
+<span class="w">        </span><span class="nl">isItemExpandable</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="nv">outlineView</span>
+<span class="w">       </span><span class="nl">numberOfChildrenOfItem</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="nv">outlineView</span><span class="w"> </span>
+<span class="w">      </span><span class="nl">objectValueForTableColumn</span><span class="p">:(</span><span class="n">NSTableColumn</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="nv">tableColumn</span><span class="w"> </span>
+<span class="w">      </span><span class="nl">byItem</span><span class="p">:(</span><span class="kt">id</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>“Item” means the node in the data source. If item is nil, it means it is
+root node. Starting from root node, NSOutlineView ask each node how many
+children it has ? is it expandable ? display the object value of the
+node, and get the next child. After it goes over the nodes, it finish
+displaying the data source.</p>
+<p>So I have to build the tree first:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.h</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cm">/* All Rights reserved */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;AppKit/AppKit.h&gt;</span>
+
+<span class="k">@class</span> <span class="nc">Node</span>;
+
+<span class="k">@interface</span> <span class="nc">Controller</span> : <span class="bp">NSObject</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">id</span><span class="w"> </span><span class="n">outlineview</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">root</span><span class="p">;</span>
+<span class="w">  </span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cm">/* All Rights reserved */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;AppKit/AppKit.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Controller.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Node.h&quot;</span>
+
+<span class="k">@implementation</span> <span class="nc">Controller</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">child</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">temp</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nb">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nb">super</span><span class="w"> </span><span class="n">init</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">child</span><span class="w"> </span><span class="n">setName</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;System&quot;</span><span class="p">];</span>
+
+<span class="w">  </span><span class="cm">/* Add operating system */</span>
+<span class="w">  </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">temp</span><span class="w"> </span><span class="n">setName</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Operating System&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">temp</span><span class="w"> </span><span class="n">setValue</span><span class="o">:</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSProcessInfo</span><span class="w"> </span><span class="n">processInfo</span><span class="p">]</span><span class="w"> </span><span class="n">operatingSystemName</span><span class="p">]];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">child</span><span class="w"> </span><span class="n">addChild</span><span class="o">:</span><span class="w"> </span><span class="n">temp</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/* Add user name */</span>
+<span class="w">  </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">temp</span><span class="w"> </span><span class="n">setName</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;User Name&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">temp</span><span class="w"> </span><span class="n">setValue</span><span class="o">:</span><span class="w"> </span><span class="n">NSUserName</span><span class="p">()];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">child</span><span class="w"> </span><span class="n">addChild</span><span class="o">:</span><span class="w"> </span><span class="n">temp</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/* Add home directory */</span>
+<span class="w">  </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">temp</span><span class="w"> </span><span class="n">setName</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Home Directory&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">temp</span><span class="w"> </span><span class="n">setValue</span><span class="o">:</span><span class="w"> </span><span class="n">NSHomeDirectory</span><span class="p">()];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">child</span><span class="w"> </span><span class="n">addChild</span><span class="o">:</span><span class="w"> </span><span class="n">temp</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">root</span><span class="w"> </span><span class="n">addChild</span><span class="o">:</span><span class="w"> </span><span class="n">child</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">super</span><span class="w"> </span><span class="n">dealloc</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>I create a root node, add an “System” node. Then add three nodes into
+“System” node. That’s a very simple tree for now. Once I have a tree, I
+can display it in outline view.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">outlineView</span>
+<span class="w">             </span><span class="nl">child</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="nv">index</span>
+<span class="w">            </span><span class="nl">ofItem</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">item</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="cm">/* Root */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[[</span><span class="n">root</span><span class="w"> </span><span class="n">children</span><span class="p">]</span><span class="w"> </span><span class="n">objectAtIndex</span><span class="o">:</span><span class="w"> </span><span class="n">index</span><span class="p">];</span>
+
+<span class="w">  </span><span class="cm">/* Others */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">([[</span><span class="n">item</span><span class="w"> </span><span class="n">children</span><span class="p">]</span><span class="w"> </span><span class="n">count</span><span class="p">])</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[[</span><span class="n">item</span><span class="w"> </span><span class="n">children</span><span class="p">]</span><span class="w"> </span><span class="n">objectAtIndex</span><span class="o">:</span><span class="w"> </span><span class="n">index</span><span class="p">];</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">nil</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">outlineView</span>
+<span class="w">         </span><span class="nl">isItemExpandable</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">item</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="cm">/* Root */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">YES</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/* Others */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">([[</span><span class="n">item</span><span class="w"> </span><span class="n">children</span><span class="p">]</span><span class="w"> </span><span class="n">count</span><span class="p">])</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">YES</span><span class="p">;</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NO</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">outlineView</span>
+<span class="w">        </span><span class="nl">numberOfChildrenOfItem</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">item</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="cm">/* Root */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[[</span><span class="n">root</span><span class="w"> </span><span class="n">children</span><span class="p">]</span><span class="w"> </span><span class="n">count</span><span class="p">];</span>
+
+<span class="w">  </span><span class="cm">/* Others */</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">[[</span><span class="n">item</span><span class="w"> </span><span class="n">children</span><span class="p">]</span><span class="w"> </span><span class="n">count</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">outlineView:</span><span class="w"> </span><span class="p">(</span><span class="n">NSOutlineView</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">outlineView</span>
+<span class="w">       </span><span class="nl">objectValueForTableColumn</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">NSTableColumn</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">tableColumn</span>
+<span class="w">       </span><span class="nl">byItem</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">item</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">([[</span><span class="n">tableColumn</span><span class="w"> </span><span class="n">identifier</span><span class="p">]</span><span class="w"> </span><span class="n">isEqualToString</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Attribute&quot;</span><span class="p">])</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[(</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">item</span><span class="w"> </span><span class="n">name</span><span class="p">];</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="n">item</span><span class="w"> </span><span class="n">value</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These methods are straight-forward. Just need to take care the case when
+item is nil, which means it is root node.</p>
+<p>Now, this application is ready to go. You can finish the <code class="docutils literal notranslate"><span class="pre">main.m</span></code> and
+<code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>. Here is the source code:
+<a class="reference external" href="http://gnustep.made-it.com/GSPT/Overview/Overview-src.tar.gz">Overview-src.tar.gz</a></p>
+<p>Actually I can get more information</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">child</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">temp</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSCalendarDate</span><span class="w"> </span><span class="o">*</span><span class="n">date</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSRect</span><span class="w"> </span><span class="n">frame</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">id</span><span class="w"> </span><span class="n">object</span><span class="p">;</span>
+
+<span class="cp">#define ADD_NAME_VALUE(name, value) \</span>
+<span class="cp">        temp = [Node new]; \</span>
+<span class="cp">        [temp setName: name]; \</span>
+<span class="cp">        [temp setValue: value]; \</span>
+<span class="cp">        [child addChild: temp]; \</span>
+<span class="cp">        RELEASE(temp);</span>
+
+
+<span class="w">  </span><span class="nb">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nb">super</span><span class="w"> </span><span class="n">init</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">child</span><span class="w"> </span><span class="n">setName</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;System&quot;</span><span class="p">];</span>
+
+<span class="w">  </span><span class="cm">/* operating system */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Operating System&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSProcessInfo</span><span class="w"> </span><span class="n">processInfo</span><span class="p">]</span><span class="w"> </span><span class="n">operatingSystemName</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="cm">/* user name */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;User Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">NSUserName</span><span class="p">());</span>
+
+<span class="w">  </span><span class="cm">/* home directory */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Home Directory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">NSHomeDirectory</span><span class="p">());</span>
+
+<span class="w">  </span><span class="cm">/* gnustep root directory */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;GNUstep Directory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">NSOpenStepRootDirectory</span><span class="p">());</span>
+
+<span class="w">  </span><span class="cm">/* host and address */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Host&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">NSHost</span><span class="w"> </span><span class="n">currentHost</span><span class="p">]</span><span class="w"> </span><span class="n">name</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Address&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">NSHost</span><span class="w"> </span><span class="n">currentHost</span><span class="p">]</span><span class="w"> </span><span class="n">address</span><span class="p">]);</span><span class="w"> </span>
+
+<span class="w">  </span><span class="cm">/* Screen */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Screen Depth&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSNumber</span><span class="w"> </span><span class="n">numberWithInt</span><span class="o">:</span><span class="w"> </span><span class="p">[[</span><span class="n">NSScreen</span><span class="w"> </span><span class="n">mainScree</span>
+<span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="n">depth</span><span class="p">]]</span><span class="w"> </span><span class="n">description</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="n">NSScreen</span><span class="w"> </span><span class="n">mainScreen</span><span class="p">]</span><span class="w"> </span><span class="n">frame</span><span class="p">];</span>
+<span class="w">  </span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSString</span><span class="w"> </span><span class="n">stringWithFormat</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;%d x %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">f</span>
+<span class="n">rame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">];</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Screen Size&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">object</span><span class="p">);</span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">root</span><span class="w"> </span><span class="n">addChild</span><span class="o">:</span><span class="w"> </span><span class="n">child</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">child</span><span class="w"> </span><span class="n">setName</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Date &amp;amp; Time&quot;</span><span class="p">];</span>
+
+<span class="w">  </span><span class="cm">/* Time Zone */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;System Time Zone&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSTimeZone</span><span class="w"> </span><span class="n">systemTimeZone</span><span class="p">]</span><span class="w"> </span><span class="n">timeZoneName</span><span class="p">]</span>
+<span class="p">);</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Local Time Zone&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSTimeZone</span><span class="w"> </span><span class="n">localTimeZone</span><span class="p">]</span><span class="w"> </span><span class="n">timeZoneName</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="cm">/* Date */</span>
+<span class="w">  </span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">NSCalendarDate</span><span class="w"> </span><span class="n">calendarDate</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">date</span><span class="w"> </span><span class="n">setCalendarFormat</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;%a, %b %e, %Y&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Date&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">date</span><span class="w"> </span><span class="n">description</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">[</span><span class="n">date</span><span class="w"> </span><span class="n">setCalendarFormat</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;%H : %M : %S&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">date</span><span class="w"> </span><span class="n">description</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">root</span><span class="w"> </span><span class="n">addChild</span><span class="o">:</span><span class="w"> </span><span class="n">child</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Node</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">child</span><span class="w"> </span><span class="n">setName</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Text Related&quot;</span><span class="p">];</span>
+
+<span class="w">  </span><span class="cm">/* default encoding */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;Default Encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="bp">NSString</span><span class="w"> </span><span class="n">localizedNameOfStringEncoding</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="bp">NSString</span><span class="w"> </span><span class="n">defaultCStringEncoding</span><span class="p">]]);</span>
+
+<span class="w">  </span><span class="cm">/* Font */</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;System Font&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">NSFont</span><span class="w"> </span><span class="n">systemFontOfSize</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">NSFont</span><span class="w"> </span><span class="n">systemFontSize</span><span class="p">]]</span><span class="w"> </span><span class="n">displayName</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;System Font Size&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSNumber</span><span class="w"> </span><span class="n">numberWithFloat</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">NSFont</span><span class="w"> </span><span class="n">systemFontSize</span><span class="p">]]</span><span class="w"> </span><span class="n">description</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;System Font Encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">NSFont</span><span class="w"> </span><span class="n">systemFontOfSize</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">NSFont</span><span class="w"> </span><span class="n">systemFontSize</span><span class="p">]]</span><span class="w"> </span><span class="n">encodingScheme</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">ADD_NAME_VALUE</span><span class="p">(</span><span class="s">@&quot;System Bold Font&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="n">NSFont</span><span class="w"> </span><span class="n">boldSystemFontOfSize</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">NSFont</span><span class="w"> </span><span class="n">systemFontSize</span><span class="p">]]</span><span class="w"> </span><span class="n">displayName</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">root</span><span class="w"> </span><span class="n">addChild</span><span class="o">:</span><span class="w"> </span><span class="n">child</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now, it looks better:</p>
+<p><strong>Figure 4-53. Overview</strong></p>
+<p><img alt="" src="../../_images/Overview-10.jpg" /></p>
+<p>You will notice that when window is close, the application is not quit.
+We can make the application quit when last window closes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">applicationShouldTerminateAfterLastWindowClosed:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">sender</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is the method for NSApp delegate. Therefore, Controller must be the
+delegate of NSApp. I assign it already in Gorm</p>
+<hr class="docutils" />
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../6_LunarCalendar/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">6 - LunarCalendar</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../4_Money/4.4.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">4.4 - Drag and Drop</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, GNUstep contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=172f29ee"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

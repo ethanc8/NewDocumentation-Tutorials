@@ -1,0 +1,964 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="2 - Convertor" href="../2_Convertor/index.html" /><link rel="prev" title="Building Apps with GORM" href="../index.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
+        <title>1 - Introduction to GNUstep Programming - GNUstep Tutorials 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">GNUstep Tutorials 2024 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">GNUstep Tutorials 2024 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ObjectiveCIntro/index.html">Introduction to Objective-C</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps with GORM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Building Apps with GORM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">1 - Introduction to GNUstep Programming</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../2_Convertor/index.html">2 - Convertor</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 2 - Convertor</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.1.html">2.1 - Designing the UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.2.html">2.2 - Outlets and Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.3.html">2.3 - Adding the Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../3_TimeMachine/index.html">3 - TimeMachine - a single window application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 3 - TimeMachine - a single window application</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.1.html">3.1 - A Basic Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.2.html">3.2 - Analog Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.3.html">3.3 - New Time Zone Dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.4.html">3.4 - Multiple Clocks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../4_Money/index.html">4 - Money</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 4 - Money</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.1.html">4.1 - The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.2.html">4.2 - Document Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.3.html">4.3 - Load and Save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.4.html">4.4 - Drag and Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../5_Overview/index.html">5 - Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6_LunarCalendar/index.html">6 - LunarCalendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7_NSLocalizationService/index.html">7 - NSLocalizationService</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Todo/index.html">Todo.app</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Todo.app</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial1.html">1 - Programming under GNUstep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial2.html">2 - NSWindowController and Design Pattern MVC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../HelpfulWebsites.html">Helpful Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/index.html">Building Apps from Code Only</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/index.html">First Steps in GNUstep GUI Programming</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/SharedApplication.html">1. The shared application object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/AppIcon.html">2 Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Menus.html">3 Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Windows.html">2 Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Buttons.html">3 Adding a Button in the Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../AppsWithRenaissance/index.html">Building Apps with Renaissance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CommandLineTools/index.html">Command-Line Tools</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="introduction-to-gnustep-programming">
+<h1>1 - Introduction to GNUstep Programming<a class="headerlink" href="#introduction-to-gnustep-programming" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>The basis of GNUstep is formed by the GNUstep makefile system and
+GNUstep base. With only these two you are able to program platform
+independend non-graphical programs.</p>
+<p>The makefile system is an extension to the normal <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. You need
+GNU <strong>make</strong>, which might on your system be present as <strong>gmake</strong>. The
+makefiles are called <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>. The GNUstep makefile system
+simplyfies your makefiles, all makefile logic will be done for you so
+that makefile functionality will be consistent across all GNUstep
+programs.</p>
+<p>GNUstep base contains what is defined in the OpenStep standard as the
+Foundation. It has the logic for creating strings, arrays, file handling
+and the like. All objects are prefixed with NS or GS. The NS prefixed
+objects are the ones that comply to the OpenStep standard as closely as
+possible, while the GS ones are GNUstep extensions.</p>
+</section>
+<hr class="docutils" />
+<section id="tools-applications">
+<h2>Tools &amp; Applications<a class="headerlink" href="#tools-applications" title="Permalink to this heading">#</a></h2>
+<p>We start with the traditional “Hello World” program, which is mainly a
+demonstration of gnustep-make.</p>
+<p><code class="docutils literal notranslate"><span class="pre">main.c:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is a very simple C program. In order to compile it, we create a
+GNUmakefile file, which is a simplified, but powerful version of a
+Makefile.</p>
+<p><code class="docutils literal notranslate"><span class="pre">GNUmakefile:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">common</span><span class="p">.</span><span class="n">make</span>
+
+<span class="n">CTOOL_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorld</span>
+<span class="n">HelloWorld_HEADERS</span><span class="w"> </span><span class="o">=</span>
+<span class="n">HelloWorld_C_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">c</span>
+<span class="n">HelloWorld_RESOURCE_FILES</span><span class="w"> </span><span class="o">=</span>
+
+<span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">ctool</span><span class="p">.</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>Type <strong>make</strong> and do <strong>./shared_obj/HelloWorld</strong>. It will print “Hello
+World”, as you might have expected.</p>
+<p>This example shows you a couple of powerful things about the GNUstep
+makefile system. As you can see there are no targets. You can type
+<strong>make</strong> and it works. You might also have noticed that you told,
+through the <code class="docutils literal notranslate"><span class="pre">CTOOL_NAME</span></code> variable, the system that your application is
+called HelloWorld.</p>
+<p>Let’s do the same for an Objective-C version of Hello World.</p>
+<p><code class="docutils literal notranslate"><span class="pre">main.m</span></code>:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;objc/Object.h&gt;</span>
+
+<span class="k">@interface</span> <span class="nc">Greeter</span>:<span class="nc">Object</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="cm">/* This is left empty on purpose:</span>
+<span class="cm">   ** Normally instance variables would be declared here,</span>
+<span class="cm">   ** but these are not used in our example.</span>
+<span class="cm">   */</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">greet</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="k">@implementation</span> <span class="nc">Greeter</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">greet</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">id</span><span class="w"> </span><span class="n">myGreeter</span><span class="p">;</span>
+<span class="w">    </span><span class="n">myGreeter</span><span class="o">=</span><span class="p">[</span><span class="n">Greeter</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+
+<span class="w">    </span><span class="p">[</span><span class="n">myGreeter</span><span class="w"> </span><span class="n">greet</span><span class="p">];</span>
+
+<span class="w">    </span><span class="p">[</span><span class="n">myGreeter</span><span class="w"> </span><span class="n">free</span><span class="p">];</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">common</span><span class="p">.</span><span class="n">make</span>
+
+<span class="n">OBJC_PROGRAM_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorld</span>
+<span class="n">HelloWorld_HEADERS</span><span class="w"> </span><span class="o">=</span>
+<span class="n">HelloWorld_OBJC_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">m</span>
+<span class="n">HelloWorld_RESOURCE_FILES</span><span class="w"> </span><span class="o">=</span>
+
+<span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">objc</span><span class="p">.</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>Next to the change to <code class="docutils literal notranslate"><span class="pre">OBJC_PROGRAM_NAME</span></code> also not the change from
+<code class="docutils literal notranslate"><span class="pre">HelloWorld_C_FILES</span></code> to <code class="docutils literal notranslate"><span class="pre">HelloWorld_OBJC_FILES</span></code>.</p>
+<p>The basic logic for Objective-C files is included through <code class="docutils literal notranslate"><span class="pre">objc.make</span></code>
+and off you go for plain Objective-C programs.</p>
+<p>GNUstep knows two kinds of programs: Tools and Applications. Tools are
+mostly non-graphical programs, but more exactly Tools are programs with
+no-resources, while Applications are programs with resources.</p>
+<p><code class="docutils literal notranslate"><span class="pre">main.m</span></code>:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/Foundation.h&gt;</span>
+
+<span class="k">@interface</span> <span class="nc">Greeter</span>:<span class="bp">NSObject</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="cm">/* This is left empty on purpose:</span>
+<span class="cm">   ** Normally instance variables would be declared here,</span>
+<span class="cm">   ** but these are not used in our example.</span>
+<span class="cm">   */</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">greet</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="k">@implementation</span> <span class="nc">Greeter</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">greet</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">id</span><span class="w"> </span><span class="n">myGreeter</span><span class="p">;</span>
+<span class="w">    </span><span class="n">myGreeter</span><span class="o">=</span><span class="p">[[</span><span class="n">Greeter</span><span class="w"> </span><span class="n">alloc</span><span class="p">]</span><span class="w"> </span><span class="n">init</span><span class="p">];</span>
+
+<span class="w">    </span><span class="p">[</span><span class="n">myGreeter</span><span class="w"> </span><span class="n">greet</span><span class="p">];</span>
+
+<span class="w">    </span><span class="p">[</span><span class="n">myGreeter</span><span class="w"> </span><span class="k">release</span><span class="p">];</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">common</span><span class="p">.</span><span class="n">make</span>
+
+<span class="n">TOOL_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorld</span>
+<span class="n">HelloWorld_HEADERS</span><span class="w"> </span><span class="o">=</span>
+<span class="n">HelloWorld_OBJC_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">m</span>
+<span class="n">HelloWorld_RESOURCE_FILES</span><span class="w"> </span><span class="o">=</span>
+
+<span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">tool</span><span class="p">.</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>To show you the difference more clearly type <strong>make clean</strong> and change
+the line</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">tool</span><span class="p">.</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">application</span><span class="p">.</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>And change <code class="docutils literal notranslate"><span class="pre">TOOL_NAME</span></code> to <code class="docutils literal notranslate"><span class="pre">APP_NAME</span></code> and re-make the program. Next to
+the shared_obj directory you now also have a HelloWorld.app directory.</p>
+<p>This HelloWorld.app directory is a self contained GNUstep application.
+Type <strong>openapp HelloWorld.app</strong> and you see that it works. Now out of
+curiosity list the contents of the HelloWorld.app directory and you have
+your first glimps at the difference between a Tool and an Application.</p>
+</section>
+<hr class="docutils" />
+<section id="stuff-you-get-for-free">
+<h2>Stuff you get for free<a class="headerlink" href="#stuff-you-get-for-free" title="Permalink to this heading">#</a></h2>
+<p>Apart from being able to select the kind of program you want to create
+you get a couple of things for free. The first thing you hopefully
+already noticed is <strong>make clean</strong>, but there is more. <strong>make install</strong>
+will install your program in it’s default place, which for Tools is
+<code class="docutils literal notranslate"><span class="pre">GNUSTEP_LOCAL_ROOT</span></code>/Tools and as you might have quessed
+<code class="docutils literal notranslate"><span class="pre">GNUSTEP_LOCAL_ROOT</span></code>/Applications for applications.</p>
+<p>Ofcourse that path can be overridden by using e.g. <strong>make
+PREFIX=/my/path install</strong>, but remember that Tools and Applications are
+only searched within the GNUstep tree. It is a self contained system
+with three so called domains: GNUSTEP_SYSTEM_ROOT,
+GNUSTEP_LOCAL_ROOT and GNUSTEP_NETWORK_ROOT. Tools like <strong>openapp</strong>
+will only search through these domains and the current directory to find
+Applications and Tools.</p>
+<p>A couple of the most used <strong>make</strong> options are:</p>
+<p><strong>Basic options</strong></p>
+<ul class="simple">
+<li><p><strong>all.</strong> The same as <strong>make</strong> without options</p></li>
+<li><p><strong>check.</strong> Run tests if applicable</p></li>
+<li><p><strong>clean.</strong> Remove all that is build during make</p></li>
+<li><p><strong>distclean.</strong> Remove all that is build during make and … ???</p></li>
+<li><p><strong>install.</strong> Install all that is build, and if nothing is build, do
+the build first.</p></li>
+<li><p><strong>uninstall.</strong> Uninstall a previously install program.</p></li>
+<li><p><strong>cvs-dist, cvs-snapshot, strings.</strong> ??? What do these???</p></li>
+</ul>
+<p><strong>Boolean options</strong></p>
+<ul class="simple">
+<li><p><strong>debug=[yes|no].</strong> yes builds a program with debugging symbols.
+With debugging symbols the program can be started with <strong>debugapp</strong>.</p></li>
+<li><p><strong>filelist=[yes|no].</strong> Creates a filelist of the installed files
+(easy for packaging binaries).</p></li>
+<li><p><strong>messages=[yes|no].</strong> More verbose messaging when building
+sources.</p></li>
+<li><p><strong>shared=[yes|no].</strong> ???</p></li>
+<li><p><strong>standalone=[yes|no].</strong> ???</p></li>
+<li><p><strong>strip=[yes|no].</strong> Strip the created programs and libraries.</p></li>
+</ul>
+<p>There are some <a class="reference external" href="http://wiki.gnustep.org/index.php/GNUstep%20Make%20Tutorials">GNUmakefile
+tutorials</a>.
+Therefore, I won’t touch this topic too much. Here is another example,
+which is a real Objective-C program. If you are not familiar with
+Objective-C, read the <a class="reference external" href="http://www.gnustep.org/">Objective-C book from
+apple</a> first.</p>
+</section>
+<hr class="docutils" />
+<section id="headers">
+<h2>Headers<a class="headerlink" href="#headers" title="Permalink to this heading">#</a></h2>
+<p>Since GNUstep is build with Objective-C, which in turn is based on C,
+headers are important. Within the GNUstep domains they can be found in
+the Library/Headers directory where all have their own subdirectory; all
+foundation headers can be found in Library/Headers/Foundation.</p>
+<p>To include header files in your code you can use the C syntax:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/NSArray.h&gt;</span>
+</pre></div>
+</div>
+<p>But you have the risk of creating a recursive inclusion, so if you want
+to use include then you better use:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef HAVE_NSARRAY_H</span>
+<span class="cp">#define HAVE_NSARRAY_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/NSArray.h&gt;</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>Easier would be to use the Objective-C macro #import. import takes care
+of all the things that concern headers:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#import &lt;Foundation/NSArray.h&gt;</span>
+</pre></div>
+</div>
+<p>And since GNUstep is here to make it easier on you, you might want to
+use:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#import &lt;Foundation/Foundation.h&gt;</span>
+</pre></div>
+</div>
+<p>This includes all the headerfiles from the foundation.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><img src="GSPT_files/note.gif" alt="Note" /></td>
+<td><p>Foundation tries to implement as close as possible the OpenStep standard. Which means that the Foundation/ directory holds the headers that correspond to that standard. The extensions of GNUstep can be found in GNUstepBase/. The same goes for AppKit/ and GNUstepGUI/.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="strings">
+<h2>Strings<a class="headerlink" href="#strings" title="Permalink to this heading">#</a></h2>
+<p>There are four files:</p>
+<p><code class="docutils literal notranslate"><span class="pre">say.h:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef _Say_H_</span>
+<span class="cp">#define _Say_H_</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/NSObject.h&gt;</span>
+<span class="k">@interface</span> <span class="nc">Say</span>: <span class="bp">NSObject</span>
+<span class="p">{</span>
+<span class="p">}</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">sayHello</span><span class="p">;</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">sayHelloTo:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="nv">name</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="cp">#endif </span><span class="cm">/* _Say_H_ */</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">say.m:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;say.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/Foundation.h&gt;</span>
+
+<span class="k">@implementation</span> <span class="nc">Say</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">sayHello</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Hello World&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">sayHelloTo:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="nv">name</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Hello World, %@&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">main.m:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;say.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/Foundation.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="kt">id</span><span class="w"> </span><span class="n">speaker</span><span class="p">;</span>
+<span class="w">   </span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;GNUstep !&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span>
+
+<span class="w">   </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">   </span><span class="n">speaker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="n">Say</span><span class="w"> </span><span class="n">alloc</span><span class="p">]</span><span class="w"> </span><span class="n">init</span><span class="p">];</span>
+
+<span class="w">   </span><span class="p">[</span><span class="n">speaker</span><span class="w"> </span><span class="n">sayHello</span><span class="p">];</span>
+<span class="w">   </span><span class="p">[</span><span class="n">speaker</span><span class="w"> </span><span class="n">sayHelloTo</span><span class="o">:</span><span class="n">name</span><span class="p">];</span>
+
+<span class="w">   </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">speaker</span><span class="p">);</span>
+<span class="w">   </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">GNUmakefile:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">common</span><span class="p">.</span><span class="n">make</span>
+
+<span class="n">APP_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HelloWorld</span>
+<span class="n">HelloWorld_HEADERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">say</span><span class="p">.</span><span class="n">h</span>
+<span class="n">HelloWorld_OBJC_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="n">say</span><span class="p">.</span><span class="n">m</span>
+<span class="n">HelloWorld_RESOURCE_FILES</span><span class="w"> </span><span class="o">=</span>
+
+<span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">application</span><span class="p">.</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>Again, use ‘make’ and ‘openapp’ to compile and run this application.
+This example is self-explained. There are several things worthy to
+metion.</p>
+<p>The class “Say” inherits from “NSObject”, which is the root class of
+GNUstep. Always inherit from NSObject if you don’t know which class to
+use. NSObject contains many fundamental methods which you won’t want to
+implement by yourself.</p>
+<p>NSLog() is used instead of printf() because it is as easy as printf().
+And most importantly, NSLog() accept the %&#64; symbol, which represents an
+object. That means you can print objects in NSLog(). Very handy for
+debug.</p>
+<p>NSString is one of the most used classes in GNUstep. You can use &#64;”…”
+to create a NSString. There are many useful methods in NSString to
+manipulate strings and pathes. Check these articles: <a class="reference external" href="http://www.macdevcenter.com/pub/a/mac/2001/06/29/cocoa.html"><em>String in Cocoa:
+Part I</em></a>,
+<a class="reference external" href="http://www.macdevcenter.com/pub/a/mac/2001/07/13/cocoa.html"><em>Part II</em></a></p>
+<p>NSAutoreleasePool is the place for autoreleased instances. In this
+example, it is not much useful, but I think it is a good habit to use
+it. When the application should end, remember to release it. Methods
+-alloc and -init is the standard method to create an instance. Method
+-new is a shortcut if there is no messages for -init.</p>
+</section>
+<hr class="docutils" />
+<section id="arrays">
+<h2>Arrays<a class="headerlink" href="#arrays" title="Permalink to this heading">#</a></h2>
+<p>Arrays are defined by NSArray. There is static version and a dynamic
+version. The dynamic version is called NSMutableArray. To define them in
+your code goes the same for both:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="bp">NSArray</span><span class="w">        </span><span class="o">*</span><span class="n">anArray</span><span class="p">;</span>
+<span class="bp">NSMutableArray</span><span class="w"> </span><span class="o">*</span><span class="n">anMutableArray</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now let us create a simple array:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="bp">NSArray</span><span class="w">           </span><span class="o">*</span><span class="n">weekArray</span><span class="p">;</span>
+<span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span>
+
+<span class="n">pool</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="n">weekArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSArray</span><span class="w"> </span><span class="n">arrayWithObjects</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Sun&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">@&quot;Mon&quot;</span><span class="w"> </span><span class="s">@&quot;Tue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">@&quot;Wed&quot;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">                                       </span><span class="s">@&quot;Thr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">@&quot;Fri&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">@&quot;Sat&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">nil</span><span class="p">];</span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Day 0: %@</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">weekArray</span><span class="w"> </span><span class="n">objectAtIndex</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">RELEASE</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We told NSArray to fill <code class="docutils literal notranslate"><span class="pre">weekArray</span></code> with the strings that represent the
+week days and terminated the array with a ‘nil’</p>
+<p>To output the elements from the array we ask from weekArray to output
+the object at a certain index. Note that arrays start counting at 0!</p>
+</section>
+<hr class="docutils" />
+<section id="debugging-your-application">
+<h2>Debugging your application<a class="headerlink" href="#debugging-your-application" title="Permalink to this heading">#</a></h2>
+<p>Debugging your application often involves watching what happens while
+the program is running. You could use a debugger for that, like gdb, but
+there are some other options that make life easy.</p>
+<p>Since you can mix C and Objective-C you could use normal <code class="docutils literal notranslate"><span class="pre">printf</span></code>
+statements, or it’s GNUstep counterpart GSPrintf. GNUstep however also
+has a function <code class="docutils literal notranslate"><span class="pre">NSLog</span></code> and the Makefile system offers you to use <strong>make
+debug=yes</strong> and use ifdefs in your code.</p>
+<p>To make this all a bit more clear we use and example.</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/Foundation.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">        </span><span class="bp">NSArray</span><span class="w">           </span><span class="o">*</span><span class="n">outArray</span><span class="p">;</span>
+<span class="w">    </span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span>
+<span class="w">                </span>
+<span class="w">    </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">    </span><span class="n">outArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSArray</span><span class="w"> </span><span class="n">arrayWithObjects</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Msg1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">@&quot;Msg2&quot;</span><span class="w"> </span><span class="s">@&quot;Msg3&quot;</span><span class="w"> </span><span class="s">&quot;Msg4&quot;</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%@</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">outArray</span><span class="w"> </span><span class="n">objectAtIndex</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">GSPrintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%@&quot;</span><span class="p">,[</span><span class="n">outArray</span><span class="w"> </span><span class="n">objectAtIndex</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">outArray</span><span class="w"> </span><span class="n">objectAtIndex</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="cp">#ifdef DEBUG</span>
+<span class="w">        </span><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">outArray</span><span class="w"> </span><span class="n">objectAtIndex</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span><span class="p">]);</span>
+<span class="w">    </span><span class="cp">#endif</span>
+
+<span class="w">    </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>first run <strong>make</strong> and execute the binary in the obj directory. <code class="docutils literal notranslate"><span class="pre">printf</span></code>
+prints it’s output naar stdout, while NSLog outputs to stderr and with
+GSPrintf you have full control. You can print to stdout or stderr.</p>
+<p>Now run <strong>make clean; make debug=yes</strong> and rerun the command from the
+obj directory. Your output should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Msg1</span>
+<span class="n">Msg2</span>
+<span class="mi">2003</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">17</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mf">53.846</span> <span class="n">array</span><span class="p">[</span><span class="mi">10769</span><span class="p">]</span> <span class="n">Msg3</span>
+<span class="mi">2003</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">17</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mf">53.848</span> <span class="n">array</span><span class="p">[</span><span class="mi">10769</span><span class="p">]</span> <span class="n">Msg4</span>
+</pre></div>
+</div>
+<p>With these you can simply debug the most common problems, apart from
+code that won’t compile :)</p>
+</section>
+<hr class="docutils" />
+<section id="memory-management">
+<h2>Memory Management<a class="headerlink" href="#memory-management" title="Permalink to this heading">#</a></h2>
+<p>Memory management is very important, but easy, in GNUstep. Here are some
+good articles:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="http://www.macdevcenter.com/pub/a/mac/2001/07/27/cocoa.html"><em>Memory Management in
+Objective-C</em></a></p></li>
+<li><p><a class="reference external" href="http://cocoadevcentral.com/articles/000055.php"><em>Memory Management
+101</em></a></p></li>
+<li><p><a class="reference external" href="http://www.stepwise.com/Articles/Technical/2001-03-11.01.html"><em>Very simple rules for memory management in
+Cocoa</em></a></p></li>
+<li><p><a class="reference external" href="http://www.stepwise.com/Articles/Technical/HoldMe.html"><em>Hold Me, Use Me, Free
+Me</em></a></p></li>
+<li><p><a class="reference external" href="http://cocoa.mamasam.com/COCOADEV/2002/08/1/41613.php"><em>Accessor methods and (auto)release:
+conclusion</em></a></p></li>
+<li><p><a class="reference external" href="http://www.stepwise.com/Articles/Technical/MemoryManagement.html"><em>Memory Management with
+Cocoa/WebObjects</em></a></p></li>
+</ol>
+<p>GNUstep offers some good macros to ease the coding related to memory
+management. Take a look at NSObject.h for ASSIGN(), RELEASE(), RETAIN(),
+etc.</p>
+<p>The most common way to handle release/retain is this:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="k">@interface</span> <span class="nc">MyObject</span>: <span class="bp">NSObject</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">id</span><span class="w"> </span><span class="n">myData</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">-(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setMyData:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">newData</span><span class="p">;</span>
+<span class="p">-(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">myData</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">MyObject</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setMyData:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">newData</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">ASSIGN</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span><span class="w"> </span><span class="n">newData</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">myData</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">myData</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">myData</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+</div>
+<p>Basically it works for me. ASSIGNCOPY() can also be used to copy object.
+Always use [self setMyData: newData] to set myData, or at least use
+ASSIGN(myData, newData). Don’t use myData = newData. By this way, you
+don’t need to worry about the memory management.</p>
+<p>In some case, I will use mutable classes because they are thread-safe.
+For example:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="k">@interface</span> <span class="nc">MyObject</span>: <span class="bp">NSObject</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="bp">NSMutableArray</span><span class="w"> </span><span class="o">*</span><span class="n">myArray</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span>
+<span class="p">-(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setMyArray:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">newArray</span><span class="p">;</span>
+<span class="p">-(</span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">myArray</span><span class="p">;</span>
+<span class="k">@end</span><span class="w"> </span>
+
+<span class="k">@implementation</span> <span class="nc">MyObject</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">myArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSMutableArray</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setMyArray:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">newArray</span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="p">[</span><span class="n">myArray</span><span class="w"> </span><span class="n">setArray</span><span class="o">:</span><span class="w"> </span><span class="n">newArray</span><span class="p">];</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+
+<span class="p">-</span> <span class="p">(</span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nf">myArray</span><span class="w"> </span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">myArray</span><span class="p">;</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span><span class="w"> </span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">myArray</span><span class="p">);</span><span class="w"> </span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</pre></div>
+</div>
+<p>Mutable classes cost more resources. But it is a lazy way to avoid
+problems.</p>
+<p>Also be aware of the return values from GNUstep classes. Some are
+autoreleased. For example, [NSArray arrayWith…], or [&#64;”A string”
+stringBy…]. If you release them again, the application usually
+crashes. And remember to retain them if you want to use them later, and
+release them in -dealloc. It’s safe to use ASSIGN() in this case. For
+example:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">ASSIGN</span><span class="p">(</span><span class="n">myString</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">@&quot;A string&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringBy</span><span class="p">...])</span>
+</pre></div>
+</div>
+<p>ASSIGN() will handle all the details. Again, once you use ASSIGN(),
+release it in -dealloc.</p>
+</section>
+<hr class="docutils" />
+<section id="file-i-o">
+<h2>File I/O<a class="headerlink" href="#file-i-o" title="Permalink to this heading">#</a></h2>
+<p>Here is a demonstration of file I/O. GNUstep offer NSFileHandle and
+NSFileManager to handle files. NSFileHandle is mainly to read and write,
+and NSFileManager is for file management.</p>
+<p><code class="docutils literal notranslate"><span class="pre">main.m:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Foundation/Foundation.h&gt;</span>
+<span class="w">   </span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">path</span><span class="p">;</span>
+<span class="w">   </span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span>
+<span class="w">   </span><span class="bp">NSFileHandle</span><span class="w"> </span><span class="o">*</span><span class="n">readFile</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">writeFile</span><span class="p">;</span>
+<span class="w">   </span><span class="bp">NSData</span><span class="w"> </span><span class="o">*</span><span class="n">fileData</span><span class="p">;</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">   </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;main.m&quot;</span><span class="p">;</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="n">readFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSFileHandle</span><span class="w"> </span><span class="n">fileHandleForReadingAtPath</span><span class="o">:</span><span class="n">path</span><span class="p">];</span>
+<span class="w">   </span><span class="n">fileData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">readFile</span><span class="w"> </span><span class="n">readDataToEndOfFile</span><span class="p">];</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="n">writeFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSFileHandle</span><span class="w"> </span><span class="n">fileHandleWithStandardOutput</span><span class="p">];</span>
+<span class="w">   </span><span class="p">[</span><span class="n">writeFile</span><span class="w"> </span><span class="n">writeData</span><span class="o">:</span><span class="n">fileData</span><span class="p">];</span>
+<span class="w">   </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">GNUmakefile:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">common</span><span class="p">.</span><span class="n">make</span>
+<span class="w">   </span>
+<span class="n">APP_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FileHandle</span>
+<span class="n">FileHandle_HEADERS</span><span class="w"> </span><span class="o">=</span>
+<span class="n">FileHandle_OBJC_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">m</span>
+<span class="n">FileHandle_RESOURCE_FILES</span><span class="w"> </span><span class="o">=</span>
+<span class="w">   </span>
+<span class="n">include</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">GNUSTEP_MAKEFILES</span><span class="p">)</span><span class="o">/</span><span class="n">application</span><span class="p">.</span><span class="n">make</span>
+</pre></div>
+</div>
+<p>It is not too much useful to only trasfer data in NSData. Here, I can
+take the data out of NSData and manipulate it in C. By this way, I can
+combine GNUstep with C libraries.</p>
+<p><code class="docutils literal notranslate"><span class="pre">main.m:</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#import &lt;Foundation/Foundation.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">path</span><span class="p">;</span>
+<span class="w">  </span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span>
+<span class="w">  </span><span class="bp">NSFileHandle</span><span class="w"> </span><span class="o">*</span><span class="n">readFile</span><span class="p">;</span>
+<span class="w">  </span><span class="bp">NSData</span><span class="o">*</span><span class="w"> </span><span class="n">fileData</span><span class="p">;</span>
+<span class="w">   </span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSAutoreleasePool</span><span class="w"> </span><span class="n">new</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// path = @&quot;main.m&quot;;</span>
+<span class="w">  </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;GNUmakefile&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">readFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSFileHandle</span><span class="w"> </span><span class="n">fileHandleForReadingAtPath</span><span class="o">:</span><span class="n">path</span><span class="p">];</span>
+<span class="w">  </span><span class="n">fileData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">readFile</span><span class="w"> </span><span class="n">readDataToEndOfFile</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">fileData</span><span class="w"> </span><span class="n">length</span><span class="p">];</span>
+<span class="w">  </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="o">*</span><span class="n">length</span><span class="p">);</span>
+<span class="w">  </span><span class="p">[</span><span class="n">fileData</span><span class="w"> </span><span class="n">getBytes</span><span class="o">:</span><span class="w"> </span><span class="n">buffer</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">);</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">   </span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+<span class="w">   </span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="basic-classes">
+<h2>Basic Classes<a class="headerlink" href="#basic-classes" title="Permalink to this heading">#</a></h2>
+<p>Documents about the base/foundation classes of GNUstep and Cocoa:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="http://www.gnustep.it/nicola/Tutorials/BasicClasses/"><em>Basic GNUstep Base Library
+Classes</em></a></p></li>
+<li><p><a class="reference external" href="http://cocoadevcentral.com/articles/000005.php"><em>The Storage Series, Part
+One</em></a></p></li>
+<li><p><a class="reference external" href="http://cocoadevcentral.com/articles/000006.php"><em>The Storage Series, Part
+Two</em></a></p></li>
+<li><p><a class="reference external" href="http://cocoadevcentral.com/articles/000010.php"><em>The Storage Series, Part
+Three</em></a></p></li>
+<li><p><a class="reference external" href="http://cocoadevcentral.com/articles/000065.php"><em>Understanding the design behind Cocoa’s Foundation
+classes</em></a></p></li>
+<li><p><a class="reference external" href="http://www.macdevcenter.com/pub/a/mac/2001/06/29/cocoa.html"><em>Strings in Cocoa: Part
+I</em></a></p></li>
+<li><p><a class="reference external" href="http://www.macdevcenter.com/pub/a/mac/2001/07/13/cocoa.html"><em>Strings in Cocoa: Part
+II</em></a></p></li>
+</ol>
+<hr class="docutils" />
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../2_Convertor/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">2 - Convertor</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Building Apps with GORM</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, GNUstep contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">1 - Introduction to GNUstep Programming</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#tools-applications">Tools &amp; Applications</a></li>
+<li><a class="reference internal" href="#stuff-you-get-for-free">Stuff you get for free</a></li>
+<li><a class="reference internal" href="#headers">Headers</a></li>
+<li><a class="reference internal" href="#strings">Strings</a></li>
+<li><a class="reference internal" href="#arrays">Arrays</a></li>
+<li><a class="reference internal" href="#debugging-your-application">Debugging your application</a></li>
+<li><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li><a class="reference internal" href="#file-i-o">File I/O</a></li>
+<li><a class="reference internal" href="#basic-classes">Basic Classes</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=172f29ee"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

@@ -1,0 +1,529 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="3 Adding a Button in the Window" href="Buttons.html" /><link rel="prev" title="1 Points, Sizes and Rectangles" href="PointsSizesRectangles.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
+        <title>2 Adding a Window to your Application - GNUstep Tutorials 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">GNUstep Tutorials 2024 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">GNUstep Tutorials 2024 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ObjectiveCIntro/index.html">Introduction to Objective-C</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../AppsWithGorm/index.html">Building Apps with GORM</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Building Apps with GORM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/1_Intro/index.html">1 - Introduction to GNUstep Programming</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/index.html">2 - Convertor</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 2 - Convertor</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/2.1.html">2.1 - Designing the UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/2.2.html">2.2 - Outlets and Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/2.3.html">2.3 - Adding the Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/index.html">3 - TimeMachine - a single window application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 3 - TimeMachine - a single window application</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.1.html">3.1 - A Basic Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.2.html">3.2 - Analog Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.3.html">3.3 - New Time Zone Dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.4.html">3.4 - Multiple Clocks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/4_Money/index.html">4 - Money</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 4 - Money</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.1.html">4.1 - The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.2.html">4.2 - Document Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.3.html">4.3 - Load and Save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.4.html">4.4 - Drag and Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/5_Overview/index.html">5 - Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/6_LunarCalendar/index.html">6 - LunarCalendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/7_NSLocalizationService/index.html">7 - NSLocalizationService</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/Todo/index.html">Todo.app</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Todo.app</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/Todo/Tutorial1.html">1 - Programming under GNUstep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/Todo/Tutorial2.html">2 - NSWindowController and Design Pattern MVC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/HelpfulWebsites.html">Helpful Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps from Code Only</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">First Steps in GNUstep GUI Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SharedApplication.html">1. The shared application object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppIcon.html">2 Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Menus.html">3 Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">2 Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Buttons.html">3 Adding a Button in the Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../AppsWithRenaissance/index.html">Building Apps with Renaissance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CommandLineTools/index.html">Command-Line Tools</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="adding-a-window-to-your-application">
+<h1>2 Adding a Window to your Application<a class="headerlink" href="#adding-a-window-to-your-application" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<p><span id="CHILD_LINKS"><strong>Subsections</strong></span></p>
+<ul class="simple">
+<li><p><a href="node7.html" id="tex2html88">2.1 Window Attributes</a></p></li>
+<li><p><a href="node8.html" id="tex2html89">2.2 Creating a Window</a></p></li>
+<li><p><a href="node9.html" id="tex2html90">2.3 Setting the title of a window</a></p></li>
+<li><p><a href="node10.html" id="tex2html91">2.4 Ordering Front a window</a></p></li>
+<li><p><a href="node11.html" id="tex2html92">2.5 Integrating the window with your application</a></p>
+<ul>
+<li><p><a href="node12.html" id="tex2html93">2.5.1 The organization of start-up code</a></p></li>
+</ul>
+</li>
+<li><p><a href="node13.html" id="tex2html94">2.6 Source Code</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="window-attributes">
+<h2>2.1 Window Attributes<a class="headerlink" href="#window-attributes" title="Permalink to this heading">#</a></h2>
+<p>Windows are represented in GNUstep by <code class="docutils literal notranslate"><span class="pre">NSWindow</span></code> objects. We are mainly interested in two attributes of a <code class="docutils literal notranslate"><span class="pre">NSWindow</span></code> object:</p>
+<ol class="arabic">
+<li><p>its <em>content rect</em>, which is a <code class="docutils literal notranslate"><span class="pre">NSRect</span></code> describing the rectangle covered by the internal area of the window; i.e., without all the decorations added by the window manager (title bar, border, etc);</p></li>
+<li><p>its <em>style mask</em>, which is an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code> describing the decorations of the window. A zero style mask is also known as a <code class="docutils literal notranslate"><span class="pre">NSBorderlessWindowMask</span></code>, and means that the window has no decorations at all. If the window needs to have decorations, you need to set its style mask to a combination (<code class="docutils literal notranslate"><span class="pre">OR</span></code>) of one or more of the following constants:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NSTitledWindowMask</span></code> = the window has a title bar;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NSClosableWindowMask</span></code> = the window can be closed by the user (it has a close button);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NSMiniaturizableWindowMask</span></code> = the window can be miniaturized by the user (it has a miniaturize button);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NSResizableWindowMask</span></code> = the window can be resized by the user.</p></li>
+</ul>
+<p>For example, a window which has a title bar, is closable and miniaturizable will have a style mask of:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>unsigned int windowMask = NSTitledWindowMask 
+                          | NSClosableWindowMask 
+                          | NSMiniaturizableWindowMask;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">|</span></code> is the C operator for the logical OR.</p>
+</li>
+</ol>
+<p>While you might freely change the content rect of your window after the window has been created, you can only set the style mask when the window is first created. You can not change the style mask of the window after creation.</p>
+</section>
+<hr class="docutils" />
+<section id="creating-a-window">
+<h2>2.2 Creating a Window<a class="headerlink" href="#creating-a-window" title="Permalink to this heading">#</a></h2>
+<p>We are now ready to show an example of creating a window:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NSWindow *myWindow;
+NSRect rect = NSMakeRect (100, 100, 200, 200);
+unsigned int styleMask = NSTitledWindowMask 
+                         | NSMiniaturizableWindowMask;
+
+myWindow = [NSWindow alloc];
+myWindow = [myWindow initWithContentRect: rect
+                     styleMask: styleMask
+                     backing: NSBackingStoreBuffered
+                     defer: NO];
+</pre></div>
+</div>
+<p>(Please ignore the <code class="docutils literal notranslate"><span class="pre">backing:</span></code> and <code class="docutils literal notranslate"><span class="pre">defer:</span></code> arguments for now. The values given in the example are appropriate in most cases). This window has an initial content rect which has its origin (its lower left corner) positioned in the point of coordinates (100, 100) in the screen coordinates. In GNUstep, all coordinates system are by default Cartesian and the origin is always in the lower left corner (this is only the default, because inside a GNUstep window you can then flip, rotate and (more generally) transform coordinates at your wish). The window has a title bar, and can be miniaturized by the user, but not resized or closed.</p>
+</section>
+<hr class="docutils" />
+<section id="setting-the-title-of-a-window">
+<h2>2.3 Setting the title of a window<a class="headerlink" href="#setting-the-title-of-a-window" title="Permalink to this heading">#</a></h2>
+<p>To set the title of the window <code class="docutils literal notranslate"><span class="pre">myWindow</span></code>, you simply do something like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[myWindow setTitle: @&quot;This is a test window&quot;];
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ordering-front-a-window">
+<h2>2.4 Ordering Front a window<a class="headerlink" href="#ordering-front-a-window" title="Permalink to this heading">#</a></h2>
+<p>Creating a window does not make it visible. The window is ready to be used, but it is not visible till you invoke the <code class="docutils literal notranslate"><span class="pre">orderFront:</span></code> method, as in:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[myWindow orderFront: nil];
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">orderFront:</span></code> takes an object argument so that it can be invoked as an <em>action</em> from a button or a menu item, but the argument is usually ignored, which is why we simply use <code class="docutils literal notranslate"><span class="pre">nil</span></code> for it.</p>
+<p>If you want your window to be ordered front and to get the keyboard focus, you do:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[myWindow makeKeyAndOrderFront: nil];
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="integrating-the-window-with-your-application">
+<h2>2.5 Integrating the window with your application<a class="headerlink" href="#integrating-the-window-with-your-application" title="Permalink to this heading">#</a></h2>
+<p>We now want to show a very simple example of an application creating a single window. Our application will be useless if its only window is not visible; for this reason, we do not add a close button to the window (following the <em>NEXTSTEP</em> tradition, the user needs to select <em>Quit</em> from the main menu to quit the application. To get the main menu, the user typically clicks the right button of his mouse on one of the windows).</p>
+<p>We can create the window in the same method</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationWillFinishLaunching: (NSNotification *)not;
+</pre></div>
+</div>
+<p>where we created the menu. This method contains initialization code to be run <em>before</em> the application is launched.</p>
+<p>But, we can’t order front (ie, make visible) windows before <code class="docutils literal notranslate"><span class="pre">NSApp</span></code> has become active (which happens when the application is `launched’), so that ordering front our window in <code class="docutils literal notranslate"><span class="pre">applicationWillFinishLaunching:</span></code> would not work, because this method is called <em>before</em> the application finished launching.</p>
+<p>To get around this problem, we implement in our application delegate also another method, called:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationDidFinishLaunching: (NSNotification *)not;
+</pre></div>
+</div>
+<p>This method (if implemented by the application’s delegate) is invoked by the <code class="docutils literal notranslate"><span class="pre">NSApp</span></code> just after it finished launching. We order front our window in this method.</p>
+<hr class="docutils" />
+<p><span id="CHILD_LINKS"><strong>Subsections</strong></span></p>
+<ul class="simple">
+<li><p><a href="node12.html" id="tex2html145">2.5.1 The organization of start-up code</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="the-organization-of-start-up-code">
+<h3>2.5.1 The organization of start-up code<a class="headerlink" href="#the-organization-of-start-up-code" title="Permalink to this heading">#</a></h3>
+<p>The way we have organized the start-up of our application is as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationWillFinishLaunching: (NSNotification *)not;
+</pre></div>
+</div>
+<p>contains code for the initialization process of the application. This usually means creating the application’s main objects; in our case, the menu and the only application’s window. You can’t (and shouldn’t) display any window in this method.</p>
+<p>Instead, the method</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationDidFinishLaunching: (NSNotification *)not;
+</pre></div>
+</div>
+<p>contains a sequence of user-visible actions to be taken just after the application became active: typically, popping up a window or a panel to the user.</p>
+<p>It should be mentioned that this is not the only possible way of organizing the start-up of an application.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="source-code">
+<h2>2.6 Source Code<a class="headerlink" href="#source-code" title="Permalink to this heading">#</a></h2>
+<p>Here is the source code of our new application:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#include &lt;Foundation/Foundation.h&gt;
+#include &lt;AppKit/AppKit.h&gt;
+
+@interface MyDelegate : NSObject
+{
+  NSWindow *myWindow;
+}
+- (void) createMenu;
+- (void) createWindow;
+- (void) applicationWillFinishLaunching: (NSNotification *)not;
+- (void) applicationDidFinishLaunching: (NSNotification *)not;
+@end
+
+@implementation MyDelegate : NSObject 
+- (void) dealloc
+{
+  RELEASE (myWindow);
+}
+
+- (void) createMenu
+{
+  NSMenu *menu;
+
+  menu = AUTORELEASE ([NSMenu new]);
+
+  [menu addItemWithTitle: @&quot;Quit&quot;  
+        action: @selector (terminate:)  
+        keyEquivalent: @&quot;q&quot;];
+
+  [NSApp setMainMenu: menu];
+}
+
+- (void) createWindow
+{
+  NSRect rect = NSMakeRect (100, 100, 200, 200);
+  unsigned int styleMask = NSTitledWindowMask 
+                           | NSMiniaturizableWindowMask;
+
+
+  myWindow = [NSWindow alloc];
+  myWindow = [myWindow initWithContentRect: rect
+                       styleMask: styleMask
+                       backing: NSBackingStoreBuffered
+                       defer: NO];
+  [myWindow setTitle: @&quot;This is a test window&quot;];
+}
+
+- (void) applicationWillFinishLaunching: (NSNotification *)not
+{
+  [self createMenu];
+  [self createWindow];
+}
+
+- (void) applicationDidFinishLaunching: (NSNotification *)not;
+{
+  [myWindow makeKeyAndOrderFront: nil];
+}
+@end
+
+int main (int argc, const char **argv)
+{ 
+  [NSApplication sharedApplication];
+  [NSApp setDelegate: [MyDelegate new]];
+
+  return NSApplicationMain (argc, argv);
+}
+</pre></div>
+</div>
+<p>To make the code easier to read and to understand, we have moved all the code creating the menu into a <code class="docutils literal notranslate"><span class="pre">createMenu</span></code> method, and the code creating the window into a <code class="docutils literal notranslate"><span class="pre">createWindow</span></code> method.</p>
+<p>We have also implemented the <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> method, which is quite useless in this case, because we create only one <code class="docutils literal notranslate"><span class="pre">MyDelegate</span></code> object, which is only released when the application quits (there is few interest in releasing memory when the application is quitting, since all memory is going to be released anyway). But it is good programming practice to always implement <code class="docutils literal notranslate"><span class="pre">dealloc</span></code>; this method should release all the resources that the object was using. In this case, we only need to release the window object. Please refer to the Memory Management tutorial [yet to be written *grin*] for more information on the <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> method.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> is the usual one:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>include $(GNUSTEP_MAKEFILES)/common.make
+
+APP_NAME = WindowApp
+WindowApp_OBJC_FILES = MyApp.m 
+
+include $(GNUSTEP_MAKEFILES)/application.make
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="Buttons.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">3 Adding a Button in the Window</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="PointsSizesRectangles.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">1 Points, Sizes and Rectangles</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, GNUstep contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">2 Adding a Window to your Application</a><ul>
+<li><a class="reference internal" href="#window-attributes">2.1 Window Attributes</a></li>
+<li><a class="reference internal" href="#creating-a-window">2.2 Creating a Window</a></li>
+<li><a class="reference internal" href="#setting-the-title-of-a-window">2.3 Setting the title of a window</a></li>
+<li><a class="reference internal" href="#ordering-front-a-window">2.4 Ordering Front a window</a></li>
+<li><a class="reference internal" href="#integrating-the-window-with-your-application">2.5 Integrating the window with your application</a><ul>
+<li><a class="reference internal" href="#the-organization-of-start-up-code">2.5.1 The organization of start-up code</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source-code">2.6 Source Code</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=172f29ee"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

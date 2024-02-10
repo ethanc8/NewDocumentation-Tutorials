@@ -1,0 +1,400 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="2 Setting your application’s icon" href="AppIcon.html" /><link rel="prev" title="First Steps in GNUstep GUI Programming" href="index.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
+        <title>1. The shared application object - GNUstep Tutorials 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">GNUstep Tutorials 2024 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">GNUstep Tutorials 2024 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ObjectiveCIntro/index.html">Introduction to Objective-C</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../AppsWithGorm/index.html">Building Apps with GORM</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Building Apps with GORM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/1_Intro/index.html">1 - Introduction to GNUstep Programming</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/index.html">2 - Convertor</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 2 - Convertor</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/2.1.html">2.1 - Designing the UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/2.2.html">2.2 - Outlets and Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/2_Convertor/2.3.html">2.3 - Adding the Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/index.html">3 - TimeMachine - a single window application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 3 - TimeMachine - a single window application</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.1.html">3.1 - A Basic Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.2.html">3.2 - Analog Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.3.html">3.3 - New Time Zone Dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/3_TimeMachine/3.4.html">3.4 - Multiple Clocks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/4_Money/index.html">4 - Money</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 4 - Money</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.1.html">4.1 - The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.2.html">4.2 - Document Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.3.html">4.3 - Load and Save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/4_Money/4.4.html">4.4 - Drag and Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/5_Overview/index.html">5 - Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/6_LunarCalendar/index.html">6 - LunarCalendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/7_NSLocalizationService/index.html">7 - NSLocalizationService</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithGorm/Todo/index.html">Todo.app</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Todo.app</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/Todo/Tutorial1.html">1 - Programming under GNUstep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithGorm/Todo/Tutorial2.html">2 - NSWindowController and Design Pattern MVC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../AppsWithGorm/HelpfulWebsites.html">Helpful Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps from Code Only</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">First Steps in GNUstep GUI Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">1. The shared application object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppIcon.html">2 Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Menus.html">3 Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Windows.html">2 Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Buttons.html">3 Adding a Button in the Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../AppsWithRenaissance/index.html">Building Apps with Renaissance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CommandLineTools/index.html">Command-Line Tools</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="the-shared-application-object">
+<h1>1. The shared application object<a class="headerlink" href="#the-shared-application-object" title="Permalink to this heading">#</a></h1>
+<section id="creating-the-shared-nsapplication-instance">
+<h2>1.1 Creating the shared NSApplication instance<a class="headerlink" href="#creating-the-shared-nsapplication-instance" title="Permalink to this heading">#</a></h2>
+<p>The class <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code>, provided by the GNUstep GUI library, represents a gui application. Each gui application has one (and only one) instance of this class, which is shared by all the code; it keeps tracks of all the application windows and panels, and manages the application’s run loop. You access this shared instance by calling the <code class="docutils literal notranslate"><span class="pre">+sharedApplication</span></code> method of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code>, which creates the instance of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> representing your app the first time it is invoked, and returns the previously created instance when called again. Creating the shared application is very important, because when it is first created the gui library initializes the gnustep backend; in other words, you need to create the shared application object before doing anything at all with the gui or backend library. So, we will start our first gui application with the code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NSApplication *myApplication;
+
+myApplication = [NSApplication sharedApplication];
+</pre></div>
+</div>
+<p>An interesting thing to know is that, <em>after</em> you have created an <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> shared instance for your app, you can access it simply through the global variable <code class="docutils literal notranslate"><span class="pre">NSApp</span></code>. So, many people simply discard the result of <code class="docutils literal notranslate"><span class="pre">+sharedApplication</span></code>, and start their apps as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/* The following line creates the shared application instance */
+[NSApplication sharedApplication];
+
+/* Then, use NSApp to access NSApplication&#39;s shared instance  */
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="setting-a-delegate-for-the-shared-nsapplication-instance">
+<h2>1.2 Setting a delegate for the shared NSApplication instance<a class="headerlink" href="#setting-a-delegate-for-the-shared-nsapplication-instance" title="Permalink to this heading">#</a></h2>
+<p>Once you have learnt how to create your application’s shared instance, the fastest way to develop an application is to set a <em>delegate</em> for your shared application object. This is done by using the method <code class="docutils literal notranslate"><span class="pre">-setDelegate:</span></code>, as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id myObject;
+
+// &lt;missing: create myObject&gt;
+[NSApp setDelegate: myObject];
+</pre></div>
+</div>
+<p>A delegate is an object of your choice which can customize the behaviour of your application by implementing some (predefined) methods. For example, if you want your application to display a menu (all apps should), you just need to implement in the delegate a method called</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- (void) applicationWillFinishLaunching: (NSNotification *)not;
+</pre></div>
+</div>
+<p>(ignore the argument for now) and put the code to create the menu inside this method. Your shared application will check if the delegate of your choice has implemented this method, and if so it will run the method just before entering the main run loop. The documentation of <code class="docutils literal notranslate"><span class="pre">NSApplication</span></code> lists all the other methods the delegate can implement to customize your application’s behaviour; we’ll learn about some of them in other tutorials.</p>
+<p>After you set the delegate of your application object, you need to run your application; to do this, just invoke the function <code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span> <span class="pre">()</span></code>, which does all for you.</p>
+<p>To sum up, here is the code we are going to use:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#include &lt;Foundation/Foundation.h&gt;
+#include &lt;AppKit/AppKit.h&gt;
+
+@interface MyDelegate : NSObject
+- (void) applicationWillFinishLaunching: (NSNotification *)not;
+@end
+
+@implementation MyDelegate
+- (void) applicationWillFinishLaunching: (NSNotification *)not
+{
+  // TODO - Create the menu here.
+}
+@end
+
+int main (int argc, const char **argv)
+{ 
+  [NSApplication sharedApplication];
+  [NSApp setDelegate: [MyDelegate new]];
+
+  return NSApplicationMain (argc, argv);
+}
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="the-run-loop-of-your-application">
+<h2>1.3 The run loop of your application<a class="headerlink" href="#the-run-loop-of-your-application" title="Permalink to this heading">#</a></h2>
+<p>When you call <code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span> <span class="pre">()</span></code>, the GUI library ``runs’’ your application. When the application is running, the GUI library simply enters a loop waiting for events from the user (such as the user clicking on a window, on a menu, or on the application icon). It creates an autorelease pool at the beginning of each loop, and empties it at the end; this means you don’t have to worry about manually creating and emptying autorelease pools in your gui application once it is running.</p>
+<p>Of course, if you run an application without having created any windows or menus, the application will wait indefinitely since the user has no means of communicating with it.</p>
+</section>
+<hr class="docutils" />
+<section id="terminating-your-application">
+<h2>1.4 Terminating your application<a class="headerlink" href="#terminating-your-application" title="Permalink to this heading">#</a></h2>
+<p>Whenever you want to terminate your application, you can do:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[NSApp terminate: nil];
+</pre></div>
+</div>
+<p>This is usually done when the user selects the <code class="docutils literal notranslate"><span class="pre">Quit</span></code> entry in the main menu. When you terminate your application, the gui library quits the run loop and exits the program.</p>
+<p>Btw, the argument of <code class="docutils literal notranslate"><span class="pre">terminate:</span></code> is of no importance, so we can pass any argument (<code class="docutils literal notranslate"><span class="pre">nil</span></code> in this case); the only reason why this method takes an object as argument is that it can then be set as the <code class="docutils literal notranslate"><span class="pre">action</span></code> of a gui control (discussed below).</p>
+<hr class="docutils" />
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="AppIcon.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">2 Setting your application’s icon</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">First Steps in GNUstep GUI Programming</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, GNUstep contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">1. The shared application object</a><ul>
+<li><a class="reference internal" href="#creating-the-shared-nsapplication-instance">1.1 Creating the shared NSApplication instance</a></li>
+<li><a class="reference internal" href="#setting-a-delegate-for-the-shared-nsapplication-instance">1.2 Setting a delegate for the shared NSApplication instance</a></li>
+<li><a class="reference internal" href="#the-run-loop-of-your-application">1.3 The run loop of your application</a></li>
+<li><a class="reference internal" href="#terminating-your-application">1.4 Terminating your application</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=172f29ee"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

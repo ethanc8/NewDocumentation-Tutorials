@@ -1,0 +1,581 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Todo.app" href="../Todo/index.html" /><link rel="prev" title="6 - LunarCalendar" href="../6_LunarCalendar/index.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
+        <title>7 - NSLocalizationService - GNUstep Tutorials 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">GNUstep Tutorials 2024 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">GNUstep Tutorials 2024 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ObjectiveCIntro/index.html">Introduction to Objective-C</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps with GORM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Building Apps with GORM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1_Intro/index.html">1 - Introduction to GNUstep Programming</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../2_Convertor/index.html">2 - Convertor</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 2 - Convertor</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.1.html">2.1 - Designing the UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.2.html">2.2 - Outlets and Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.3.html">2.3 - Adding the Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../3_TimeMachine/index.html">3 - TimeMachine - a single window application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 3 - TimeMachine - a single window application</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.1.html">3.1 - A Basic Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.2.html">3.2 - Analog Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.3.html">3.3 - New Time Zone Dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.4.html">3.4 - Multiple Clocks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../4_Money/index.html">4 - Money</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 4 - Money</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.1.html">4.1 - The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.2.html">4.2 - Document Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.3.html">4.3 - Load and Save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.4.html">4.4 - Drag and Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../5_Overview/index.html">5 - Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6_LunarCalendar/index.html">6 - LunarCalendar</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">7 - NSLocalizationService</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Todo/index.html">Todo.app</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Todo.app</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial1.html">1 - Programming under GNUstep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial2.html">2 - NSWindowController and Design Pattern MVC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../HelpfulWebsites.html">Helpful Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/index.html">Building Apps from Code Only</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/index.html">First Steps in GNUstep GUI Programming</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/SharedApplication.html">1. The shared application object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/AppIcon.html">2 Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Menus.html">3 Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Windows.html">2 Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Buttons.html">3 Adding a Button in the Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../AppsWithRenaissance/index.html">Building Apps with Renaissance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CommandLineTools/index.html">Command-Line Tools</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="nslocalizationservice">
+<h1>7 - NSLocalizationService<a class="headerlink" href="#nslocalizationservice" title="Permalink to this heading">#</a></h1>
+<section id="nslookupservice">
+<h2>NSLookupService<a class="headerlink" href="#nslookupservice" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="http://developer.apple.com/documentation/Cocoa/Conceptual/SysServices/index.html">System
+service</a>
+is an important feature of GNUstep, which connects applications
+together. The basic idea is that any application can be a service
+provider. Service provider will offer some functions for other
+applications. Through service menu, one application can use the
+functions of other applications. They can also exchange the data
+in-between. GNUstep offer several basic service by default. Try open
+<span class="APPLICATION">Ink.app</span>. Type something, select some
+word, choose menu “Services-&gt;To upper”, then selected word change to
+upper case. The function of converting letter into upper case is
+provider by <span class="APPLICATION">exampleService</span>, not <span
+class="APPLICATION">Ink</span>. Ink simply send the word to
+exampleService and get the result back. Through system service, you can
+simply throw an email address in the document to a mail client, throw
+the url in the document to web browser, or throw the image in
+imageviewer to a filter and get the result back. With system service,
+applications can concentrate more on its own and communicate with other
+applications to expand the functions.</p>
+<p>Firstly, let’s start with an application which can use system service.
+I’ll make an simple application which can look up the address of a
+hostname. That’s the graphic version of <strong>nslookup</strong>.</p>
+<p>Open Gorm, make an interface looks like this:</p>
+<p><strong>Figure 5-1. Interface of NSLookupService</strong></p>
+<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-01.jpg" /></p>
+<p>Create a subclass of NSObject called “Controller”, and add two outlets:
+“hostname” and “address”. Connect the outlet to the NSTextField in the
+interface.</p>
+<p><strong>Figure 5-2. Connect outlet</strong></p>
+<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-02.jpg" /></p>
+<p>Add an action called “action:” in Controller and connect action of
+NSTextField to “action:”</p>
+<p><strong>Figure 5-3. Connect action.</strong></p>
+<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-03.jpg" /></p>
+<p>Connect delegate of NSOwner (NSApp in this case) to Controller since
+service is associated with NSApp. It will be useful in the later.</p>
+<p><strong>Figure 5-4. Connect delegate of NSApp</strong></p>
+<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-04.jpg" /></p>
+<p>Modify Controller.m</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">action:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="p">[</span><span class="n">address</span><span class="w"> </span><span class="n">setStringValue</span><span class="o">:</span><span class="w"> </span><span class="p">[[</span><span class="n">NSHost</span><span class="w"> </span><span class="n">hostWithName</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">hostname</span><span class="w"> </span><span class="n">stringValue</span><span class="p">]]</span><span class="w"> </span><span class="n">address</span><span class="p">]];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It takes the value in hostname text field and convert into the address.</p>
+<p>Now, I want this application be able to use system service provided by
+other applications. I only need to add a menu so that menu of system
+service can shows up.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">awakeFromNib</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">NSMenu</span><span class="w"> </span><span class="o">*</span><span class="n">mainMenu</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">serviceMenu</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">mainMenu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">NSApp</span><span class="w"> </span><span class="n">mainMenu</span><span class="p">];</span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">mainMenu</span><span class="w"> </span><span class="n">insertItemWithTitle</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Services&quot;</span>
+<span class="w">                         </span><span class="nl">action</span><span class="p">:</span><span class="w"> </span><span class="nb">NULL</span>
+<span class="w">                  </span><span class="nl">keyEquivalent</span><span class="p">:</span><span class="w"> </span><span class="s">@&quot;&quot;</span>
+<span class="w">                        </span><span class="nl">atIndex</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">serviceMenu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="n">NSMenu</span><span class="w"> </span><span class="n">alloc</span><span class="p">]</span><span class="w"> </span><span class="n">initWithTitle</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Services&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">mainMenu</span><span class="w"> </span><span class="n">setSubmenu</span><span class="o">:</span><span class="w"> </span><span class="n">serviceMenu</span>
+<span class="w">               </span><span class="nl">forItem</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">mainMenu</span><span class="w"> </span><span class="n">itemWithTitle</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;Services&quot;</span><span class="p">]];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">NSApp</span><span class="w"> </span><span class="n">setServicesMenu</span><span class="o">:</span><span class="w"> </span><span class="n">serviceMenu</span><span class="p">];</span>
+<span class="w">  </span><span class="n">RELEASE</span><span class="p">(</span><span class="n">serviceMenu</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After the Gorm interface is loaded, add a Services menu. The most
+important is to assign this menu as the service menu of NSApp. Now,
+start this application, type something in the NSTextField, and default
+services can be used. The service menu changes depending on the object
+you select. If there is no selection, there is no item in the service
+menu.</p>
+<p>Now, I can provide the service for other applications. Only two things
+are need: one is to write the interface of system service, the other is
+to implement the system service. The interface of system service is in
+the property list of the application. In this case, it is
+NSLookupServiceInfo.plist since I name this application as
+NSLookupServiceInfo.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NSLookupServiceInfo.plist</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="n">NSServices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">NSPortName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NSLookupService</span><span class="p">;</span>
+<span class="w">      </span><span class="n">NSMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getAddress</span><span class="p">;</span>
+<span class="w">      </span><span class="n">NSSendTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">NSStringPboardType</span><span class="p">);</span>
+<span class="w">      </span><span class="n">NSMenuItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Get Address&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">English</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Get Address&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">      </span><span class="n">NSKeyEquivalent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;G&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In property list, NSPortName is the name of the application. NSMessage
+is the method I need to implement later. NSSendTypes is the type of
+pasteboard to use when other application want to send data to this
+application. In other word, this application only accept
+NSStringPboardType, not other data type. NSMenuItem and NSKeyEquivalent
+is the menu which will show up in the service menu of all the
+applications. The menu will show up only when the selection is the type
+of string.</p>
+<p>As the NSMessage is getAddress, I have to implement getAddress method.
+The interface of this method is fixed as:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">getAddress:</span><span class="w"> </span><span class="p">(</span><span class="n">NSPasteboard</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">pboard</span>
+<span class="w">           </span><span class="nl">userData</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">userData</span>
+<span class="w">              </span><span class="nl">error</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">**</span><span class="p">)</span> <span class="nv">error</span>
+</pre></div>
+</div>
+<p>getAddress: is the name the same as NSMessage. pboard is the pasteboard
+which contain the data from other applications. userData is the string
+if you have NSUserData in the property list of NSServices. error is the
+error message you want to shows up if something wrong.</p>
+<p>Now, let’s implement this method in Controller.m</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">getAddress:</span><span class="w"> </span><span class="p">(</span><span class="n">NSPasteboard</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">pboard</span>
+<span class="w">           </span><span class="nl">userData</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">userData</span>
+<span class="w">              </span><span class="nl">error</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">**</span><span class="p">)</span> <span class="nv">error</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="n">allTypes</span><span class="p">;</span>
+<span class="w">  </span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Check whether pasteboard reall contain NSString type. If not, show the
+error.</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">allTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">pboard</span><span class="w"> </span><span class="n">types</span><span class="p">];</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="p">[</span><span class="n">allTypes</span><span class="w"> </span><span class="n">containsObject</span><span class="o">:</span><span class="w"> </span><span class="n">NSStringPboardType</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;No string type supplied by pasteboard&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Get the string out of pasteboard. If there is no string, show the error.</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">pboard</span><span class="w"> </span><span class="n">stringForType</span><span class="o">:</span><span class="w"> </span><span class="n">NSStringPboardType</span><span class="p">];</span><span class="w"> </span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;No string value supplied by pasteboard&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Put the hostname into the NSTextField, check whether it is valid. If
+not, show the error. Use -action: to get the address</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="p">[</span><span class="n">hostname</span><span class="w"> </span><span class="n">setStringValue</span><span class="o">:</span><span class="w"> </span><span class="n">name</span><span class="p">];</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">([[</span><span class="n">NSHost</span><span class="w"> </span><span class="n">hostWithName</span><span class="o">:</span><span class="w"> </span><span class="n">name</span><span class="p">]</span><span class="w"> </span><span class="n">address</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;Host name is not valid&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="w"> </span><span class="n">action</span><span class="o">:</span><span class="w"> </span><span class="nb">self</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, I have to let NSApp know which object in this application
+provides the service.</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">applicationDidFinishLaunching:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSNotification</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">not</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="p">[</span><span class="n">NSApp</span><span class="w"> </span><span class="n">setServicesProvider</span><span class="o">:</span><span class="w"> </span><span class="nb">self</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In other word, you can have an object specialized for providing service.</p>
+<p>You have to install this application to make the service work, and you
+have to run <strong>make_services</strong> so that GNUstep can know there is a new
+service. <strong>make_services</strong> is a tool of GNUstep, and is called in
+GNUstep.sh or GNUstep.csh. Therefore, everytime you login, it is called
+automatically. If you install new application which offer system
+service, you must manually run <strong>make_services</strong> or login again.</p>
+<p>After runing <strong>make_services</strong>, open <span
+class="APPLICATION">Ink</span>. Type something and select them. Now,
+service menu of Ink should show the service provide by NSLookupService.
+Choose the menu, and NSLookupService will start automatically. If the
+selected string is valid hostname, NSLookupService will show its
+address, otherwise, Ink will show the error message provided by
+NSLookupService.</p>
+<p>If I want to get the value back from NSLookupService, it’s easy. Add the
+return type in property list:</p>
+<p><code class="docutils literal notranslate"><span class="pre">NSLookupServiceInfo.plist</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="n">NSServices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">NSPortName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NSLookupService</span><span class="p">;</span>
+<span class="w">      </span><span class="n">NSMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getAddress</span><span class="p">;</span>
+<span class="w">      </span><span class="n">NSSendTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">NSStringPboardType</span><span class="p">);</span>
+<span class="w">      </span><span class="n">NSReturnTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">NSStringPboardType</span><span class="p">);</span>
+<span class="w">      </span><span class="n">NSMenuItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Get Address&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">English</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Get Address&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">      </span><span class="n">NSKeyEquivalent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;G&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The return type is also string in this case. In the end of -getAddress:,
+I just need to put the return value back into the pasteboard. Whatever
+application use this service will get the return value from the
+pasteboard.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">getAddress:</span><span class="w"> </span><span class="p">(</span><span class="n">NSPasteboard</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">pboard</span>
+<span class="w">           </span><span class="nl">userData</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span> <span class="nv">userData</span>
+<span class="w">              </span><span class="nl">error</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="w"> </span><span class="o">**</span><span class="p">)</span> <span class="nv">error</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="bp">NSArray</span><span class="w"> </span><span class="o">*</span><span class="n">allTypes</span><span class="p">;</span>
+<span class="w">  </span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">allTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">pboard</span><span class="w"> </span><span class="n">types</span><span class="p">];</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="p">[</span><span class="n">allTypes</span><span class="w"> </span><span class="n">containsObject</span><span class="o">:</span><span class="w"> </span><span class="n">NSStringPboardType</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;No string type supplied by pasteboard&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">pboard</span><span class="w"> </span><span class="n">stringForType</span><span class="o">:</span><span class="w"> </span><span class="n">NSStringPboardType</span><span class="p">];</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;No string value supplied by pasteboard&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">hostname</span><span class="w"> </span><span class="n">setStringValue</span><span class="o">:</span><span class="w"> </span><span class="n">name</span><span class="p">];</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">([[</span><span class="n">NSHost</span><span class="w"> </span><span class="n">hostWithName</span><span class="o">:</span><span class="w"> </span><span class="n">name</span><span class="p">]</span><span class="w"> </span><span class="n">address</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;Host name is not valid&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="w"> </span><span class="n">action</span><span class="o">:</span><span class="w"> </span><span class="nb">self</span><span class="p">];</span>
+<span class="w">  </span><span class="cm">/* For return value */</span>
+<span class="w">  </span><span class="n">allTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSArray</span><span class="w"> </span><span class="n">arrayWithObject</span><span class="o">:</span><span class="w"> </span><span class="n">NSStringPboardType</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">pboard</span><span class="w"> </span><span class="n">declareTypes</span><span class="o">:</span><span class="w"> </span><span class="n">allTypes</span><span class="w"> </span><span class="n">owner</span><span class="o">:</span><span class="w"> </span><span class="nb">nil</span><span class="p">];</span>
+<span class="w">  </span><span class="p">[</span><span class="n">pboard</span><span class="w"> </span><span class="n">setString</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="bp">NSString</span><span class="w"> </span><span class="n">stringWithFormat</span><span class="o">:</span><span class="w"> </span><span class="s">@&quot;%@ (%@)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">address</span><span class="w"> </span><span class="n">stringValue</span><span class="p">]]</span>
+<span class="w">            </span><span class="nl">forType</span><span class="p">:</span><span class="w"> </span><span class="n">NSStringPboardType</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case, I return the original string with its address appended.
+You can test it in <span class="APPLICATION">Ink</span> again.</p>
+<p>Here is the source code:
+<a class="reference external" href="http://gnustep.made-it.com/GSPT/NSLookupService/NSLookupService-src.tar.gz">NSLookupService-src.tar.gz</a></p>
+<hr class="docutils" />
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../Todo/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Todo.app</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../6_LunarCalendar/index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">6 - LunarCalendar</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, GNUstep contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">7 - NSLocalizationService</a><ul>
+<li><a class="reference internal" href="#nslookupservice">NSLookupService</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=172f29ee"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

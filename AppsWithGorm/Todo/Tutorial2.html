@@ -1,0 +1,689 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Helpful Websites" href="../HelpfulWebsites.html" /><link rel="prev" title="1 - Programming under GNUstep" href="Tutorial1.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
+        <title>2 - NSWindowController and Design Pattern MVC - GNUstep Tutorials 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">GNUstep Tutorials 2024 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">GNUstep Tutorials 2024 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ObjectiveCIntro/index.html">Introduction to Objective-C</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Building Apps with GORM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Building Apps with GORM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1_Intro/index.html">1 - Introduction to GNUstep Programming</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../2_Convertor/index.html">2 - Convertor</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 2 - Convertor</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.1.html">2.1 - Designing the UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.2.html">2.2 - Outlets and Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2_Convertor/2.3.html">2.3 - Adding the Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../3_TimeMachine/index.html">3 - TimeMachine - a single window application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 3 - TimeMachine - a single window application</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.1.html">3.1 - A Basic Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.2.html">3.2 - Analog Clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.3.html">3.3 - New Time Zone Dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3_TimeMachine/3.4.html">3.4 - Multiple Clocks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../4_Money/index.html">4 - Money</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 4 - Money</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.1.html">4.1 - The Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.2.html">4.2 - Document Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.3.html">4.3 - Load and Save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4_Money/4.4.html">4.4 - Drag and Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../5_Overview/index.html">5 - Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6_LunarCalendar/index.html">6 - LunarCalendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7_NSLocalizationService/index.html">7 - NSLocalizationService</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Todo.app</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Todo.app</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Tutorial1.html">1 - Programming under GNUstep</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">2 - NSWindowController and Design Pattern MVC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../HelpfulWebsites.html">Helpful Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/index.html">Building Apps from Code Only</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Building Apps from Code Only</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/index.html">First Steps in GNUstep GUI Programming</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of First Steps in GNUstep GUI Programming</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/SharedApplication.html">1. The shared application object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/AppIcon.html">2 Setting your application’s icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Menus.html">3 Menus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/PointsSizesRectangles.html">1 Points, Sizes and Rectangles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Windows.html">2 Adding a Window to your Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AppsWithCodeOnly/GettingStarted/Buttons.html">3 Adding a Button in the Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../AppsWithRenaissance/index.html">Building Apps with Renaissance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CommandLineTools/index.html">Command-Line Tools</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <p>Translated with Google Translate</p>
+<section id="nswindowcontroller-and-design-pattern-mvc">
+<h1>2 - NSWindowController and Design Pattern MVC<a class="headerlink" href="#nswindowcontroller-and-design-pattern-mvc" title="Permalink to this heading">#</a></h1>
+<p>GNUstep has an NSWindowController class which will facilitate the implementation of the MVC Design Pattern.
+NSWindowController notably manages:</p>
+<ul class="simple">
+<li><p>the instantiation of the window (generally the .gorm) via the <code class="docutils literal notranslate"><span class="pre">initWithWindowNibName:</span></code> method</p></li>
+<li><p>closing the window <code class="docutils literal notranslate"><span class="pre">close</span></code>, <code class="docutils literal notranslate"><span class="pre">shouldCloseDocument</span></code>, <code class="docutils literal notranslate"><span class="pre">setShouldCloseDocument:</span></code></p></li>
+<li><p>save window properties (position/size…) <code class="docutils literal notranslate"><span class="pre">setWindowFrameAutosaveName:</span></code>, <code class="docutils literal notranslate"><span class="pre">windowFrameAutosaveName:</span></code></p></li>
+</ul>
+<section id="notes-on-the-user-interface">
+<h2>Notes on the user interface<a class="headerlink" href="#notes-on-the-user-interface" title="Permalink to this heading">#</a></h2>
+<p>Automatically saving the size and position of used windows is an example of the user approach in GNUstep; we can cite the NeXT UI Guide:</p>
+<blockquote>
+<div><p>“The similarity of graphical to real objects is at a fundamental rather than a superficial level. Graphical objects don’t
+need to resemble physical objects in every detail. But they do
+need to behave in ways that our experience with real objects
+would lead us to expect.For example, objects in the real world
+stay where we put them.”</p>
+</div></blockquote>
+</section>
+<section id="some-classes-and-widgets">
+<h2>Some classes and widgets …<a class="headerlink" href="#some-classes-and-widgets" title="Permalink to this heading">#</a></h2>
+<p>Before setting up our MVC, let’s explain
+first the principle of the NSView, NSCell and NSMatrix
+classes of the GNUstep framework.</p>
+<section id="nsview-and-nscell">
+<h3>NSView and NSCell<a class="headerlink" href="#nsview-and-nscell" title="Permalink to this heading">#</a></h3>
+<p>GNUstep has two classes for displaying something in a graphical interface:</p>
+<ul class="simple">
+<li><p>NSView is the abstract class responsible for display, event management (mouse, keyboard, etc.), and printing (postscript). All widgets available in the ApplicationKit are thus derived from this class.</p></li>
+<li><p>NSCell is a class allowing just to display text and images, but which is therefore lighter than NSView. In practice, GNUstep widgets mostly use NSCells for their display rather than directly overriding the drawing method of the NSView class, allowing better clipping</p></li>
+</ul>
+</section>
+<section id="nsmatrix">
+<h3>NSMatrix<a class="headerlink" href="#nsmatrix" title="Permalink to this heading">#</a></h3>
+<p>NSMatrix is an object for grouping NSCell objects and managing them. It allows you to group them in rows and columns. The NSCells used are generally of the same class (as we will see in our case), but you can possibly use different classes in the same NSMatrix; the only constraint being that the NSCells must necessarily have the same size</p>
+</section>
+</section>
+<section id="using-nswindowcontroller">
+<h2>Using NSWindowController<a class="headerlink" href="#using-nswindowcontroller" title="Permalink to this heading">#</a></h2>
+<p>Let’s go back to our MVC, and take as an example of using NSWindowController the preferences panel of our application “Todo” started in the previous article.</p>
+<p>We will choose here to save “on the fly” (no “apply” button) the preferences, also giving more interactivity. So we have the following components:</p>
+<ul class="simple">
+<li><p>NSUserDefaults (the Model)</p></li>
+<li><p>Preferences.gorm (the View)</p></li>
+<li><p>PreferencesController (the Controller)</p></li>
+</ul>
+<figure>
+<p><img alt="Figure 1 - Relationship between objects" src="AppsWithGorm/Todo/Figure%201.png" /></p>
+<figcaption>Figure 1 - Relationship between objects</figcaption>
+</figure>
+<p>Note that for all GNUstep-based applications the Preferences panel is (should be) accessible via the Info → Preferences menu. Now let’s create our Preferences panel with Gorm:</p>
+<p>Document → New Module → New Empty</p>
+<p>In the Palettes panel choose the window section and drag &amp; drop a panel onto the desktop.</p>
+<figure>
+<p><img alt="Figure 2 - Window palette" src="AppsWithGorm/Todo/Figure%202.jpg" /></p>
+<figcaption>Figure 2 - Window palette</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important to choose a panel rather than a window because in GNUstep (and OPENSTEP), when an application loses focus, these panels become invisible (this avoids cluttering the workspace).</p>
+</div>
+<p>Place two boxes there. In the first we will put a “Matrix” (an NSMatrix object) of buttons.</p>
+<p>To do this, drag &amp; drop a SwitchButton then select this button in the window, press the Alt key and simultaneously drag down to obtain a matrix of 3 buttons.</p>
+<p>Call them:</p>
+<ul class="simple">
+<li><p>Status</p></li>
+<li><p>End date</p></li>
+<li><p>Advancement</p></li>
+</ul>
+<p>Do the same for the status: drag &amp; drop a RadioButton and create the matrix. Position tags using the inspector (see previous article) for each of your elements, for example:</p>
+<ul class="simple">
+<li><p>Percent tag: 0</p></li>
+<li><p>Tag Color: 1</p></li>
+</ul>
+<p>Then add a “reset” button that will reset the preferences to their default values. You should get a panel that looks like Figure 3.</p>
+<figure>
+<p><img alt="Figure 3 - Our app's preferences panel" src="AppsWithGorm/Todo/Figure%203.jpg" /></p>
+<figcaption>Figure 3 - Our app's preferences panel</figcaption>
+</figure>
+<p>Let’s now create our subclass of NSWindowController, PreferencesController (figure 4).</p>
+<figure>
+<p><img alt="Figure 4 - The PreferencesController class" src="AppsWithGorm/Todo/Figure%204.jpg" /></p>
+<figcaption>Figure 4 - The PreferencesController class</figcaption>
+</figure>
+<p>Add the following Outlets:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">revertButton</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">statusMatrix</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">viewMatrix</span></code></p></li>
+</ul>
+<p>and the Shares:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">statusAction:</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">viewAction:</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">revertAction:</span></code></p></li>
+</ul>
+<p>Then go back to “Objects”, click on NSOwner and choose PreferencesController. This indicates that the owner of the Gorm file (represented by Gorm by the NSOwner icon), i.e. the object that will load the file, will be an instance of the class
+PreferencesController.</p>
+<p>You can then directly connect the Outlets and Actions to the NSOwner. Connect the statusMatrix and viewMatrix Outlets to the two NSMatrix you put on the preferences panel, and the revertButton Outlet to the “reset” button.</p>
+<p>Then connect the actions, from the two NSMatrix to the NSOwner (Actions <code class="docutils literal notranslate"><span class="pre">viewAction:</span></code> and <code class="docutils literal notranslate"><span class="pre">statusAction:</span></code>) and from the “defaults” button to the <code class="docutils literal notranslate"><span class="pre">revertAction:</span></code> action of the NSOwner.</p>
+<p>Our controller is thus linked to the view (the preferences panel), the Gorm file thus containing all the relations. We still have to deal with the model.</p>
+</section>
+<section id="nsuserdefaults-managing-preferences">
+<h2>NSUserDefaults: Managing preferences<a class="headerlink" href="#nsuserdefaults-managing-preferences" title="Permalink to this heading">#</a></h2>
+<p>As we already told you, the OpenStep specifications integrate certain classes which help in the management of a user environment (what is more commonly called under Linux a desktop).
+Managing user preferences is one of them.</p>
+<p>A database of preferences is maintained in <em><code class="docutils literal notranslate"><span class="pre">GNUSTEP_USER_ROOT</span></code></em><code class="docutils literal notranslate"><span class="pre">/Defaults/.GNUstepDefaults</span></code>. (which normally corresponds to the <code class="docutils literal notranslate"><span class="pre">~/GNUstep/Defaults/.GNUstepDefaults</span></code> directory).</p>
+<p>Unlike other environments, this preference database is a simple ascii file, readable in clear text. The format used is a “property list” (“plist”) (if you are using WindowMaker, this is the same format as its configuration files).</p>
+<p>For example, to store an array of objects, delimiters are parentheses, to store a string quotes are used, and to store a dictionary, braces are used.</p>
+<p>Objects that can be stored as is in a property list are NSData, NSString, NSNumber, NSDate, NSArray, and NSDictionary. They can be read and written directly.</p>
+<p>example of a defaults database:</p>
+<blockquote>
+<div><p><strong>Note</strong>: if you are viewing this file in VS Code, you’ll need to install the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=speedy37.ascii-plist">old-style plist extension</a> to view the colored version of the code below.</p>
+</div></blockquote>
+<div class="highlight-plist notranslate"><div class="highlight"><pre><span></span>{
+    ImageViewer = {
+        &quot;NSWindow Frame Inspector&quot; = &quot;382 192 260 382 0 0 960 768&quot;;
+        &quot;NSWindow Frame Preferences&quot; = &quot;382 233 260 303 0 0 960 768&quot;;
+    };
+    NSGlobalDomain = {
+        GSFontAntiAlias = YES;
+        NSLanguages = (
+            French,
+            English
+        );
+        &quot;back−art−subpixel−text&quot; = 0;
+        controlBackgroundColor = {
+            Alpha = 1.000000;
+            B = 0.83;
+            ColorSpace = NSCalibratedRGBColorSpace;
+            G = 0.85;
+            R = 0.86;
+        };
+        windowBackgroundColor = {
+            Alpha = 1.000000;
+            B = 0.83;
+            ColorSpace = NSCalibratedRGBColorSpace;
+            G = 0.85;
+            R = 0.86;
+        };
+    };
+}
+</pre></div>
+</div>
+<p>Here two keys are present (<code class="docutils literal notranslate"><span class="pre">ImageViewer</span></code> and <code class="docutils literal notranslate"><span class="pre">NSGlobalDomain</span></code>). <code class="docutils literal notranslate"><span class="pre">NSGlobalDomain</span></code> is the key where the user’s global preferences are saved (language, timezone…). You can use <a class="reference internal" href="#github.com/gnustep/apps-systempreferences"><span class="xref myst">SystemPreferences.app</span></a> to graphically configure these defaults.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ImageViewer</span></code> is the key saving the preferences of the ImageViewer application; it contains the size and position of two windows of this application, and these preferences have been automatically managed and saved by GNUstep and the use of the class
+<code class="docutils literal notranslate"><span class="pre">NSWindowController</span></code>.</p>
+</section>
+<section id="access-to-defaults-using-the-nsuserdefaults-class">
+<h2>Access to defaults using the NSUserDefaults class<a class="headerlink" href="#access-to-defaults-using-the-nsuserdefaults-class" title="Permalink to this heading">#</a></h2>
+<p>Preferences are accessed via the class method</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">+</span> <span class="p">(</span><span class="bp">NSUserDefaults</span><span class="o">*</span><span class="p">)</span><span class="nf">standardUserDefaults</span>
+</pre></div>
+</div>
+<p>of NSUserDefaults, which returns an instance of NSUserDefaults. NSUserDefaults is in fact a singleton, i.e. there is only one and the same instance of NSUserDefaults per program (the standardUserDefaults method creates an instance if
+it does not already exist, and otherwise returns the existing instance
+aunt). This Design Pattern makes it possible to avoid possible problems related to maintaining consistency.</p>
+<p>You can then access the preferences via the methods:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span>- (NSArray*)           arrayForKey: (NSString*) defaultName
+- (BOOL)                boolForKey: (NSString*) defaultName
+- (NSData*)             dataForKey: (NSString*) defaultName
+- (NSDictionary*) dictionaryForKey: (NSString*) defaultName
+- (float)              floatForKey: (NSString*) defaultName
+- (int)              integerForKey: (NSString*) defaultName
+-  (id)                 objectForKey: (NSString*) defaultName
+- (NSArray*)     stringArrayForKey: (NSString∗) defaultName
+- (NSString*)         stringForKey: (NSString*) defaultName
+</pre></div>
+</div>
+<p>Modify them with the methods:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>    <span class="nf">setBool:</span><span class="w"> </span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">value</span><span class="w">  </span><span class="nf">forKey:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">defaultName</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>   <span class="nf">setFloat:</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">value</span><span class="w"> </span><span class="nf">forKey:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">defaultName</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setInteger:</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">value</span><span class="w">   </span><span class="nf">forKey:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">defaultName</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="nf">setObject:</span><span class="w">  </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">value</span><span class="w">    </span><span class="nf">forKey:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">defaultName</span>
+</pre></div>
+</div>
+<p>or delete them with:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">removeObjectForKey:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">defaultName</span>
+</pre></div>
+</div>
+<p>Writing (on disk) is done by the method</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">synchronize</span>
+</pre></div>
+</div>
+<p>The preferences accessible in this way are those of the current user and of the application that accesses them.</p>
+<p>The preferences, in addition to being manipulated from within the programs, can also be modified with a command line tool: defaults.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defaults<span class="w"> </span>write<span class="w"> </span>NSGlobalDomain<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;Hello World!&quot;</span>
+</pre></div>
+</div>
+<p>will add the value test key “Hello World” in the <code class="docutils literal notranslate"><span class="pre">NSGlobalDomain</span></code> domain:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">=</span><span class="s">&quot;Hello World&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defaults<span class="w"> </span>delete<span class="w"> </span>NSGlobalDomain<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>will remove the <code class="docutils literal notranslate"><span class="pre">test</span></code> key from the <code class="docutils literal notranslate"><span class="pre">NSGlobalDomain</span></code> domain .</p>
+</section>
+<section id="implementation-for-todo-app">
+<h2>Implementation for Todo.app<a class="headerlink" href="#implementation-for-todo-app" title="Permalink to this heading">#</a></h2>
+<p>We decided to change the preferences “on the fly” (i.e. their effect is immediate) to avoid the painful Apply/OK/Cancel actions for the user.</p>
+<p>Here is the implementation of the viewAction and statusAction methods of the <code class="docutils literal notranslate"><span class="pre">PreferencesController</span></code> class. This code is to be added to the <code class="docutils literal notranslate"><span class="pre">PreferencesController.m</span></code> file that you will have generated with Gorm (Class → Create Class Files).</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="bp">NSString</span><span class="o">*</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;STATUS&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="bp">NSString</span><span class="o">*</span><span class="w"> </span><span class="n">PERCENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;PERCENT&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="bp">NSString</span><span class="o">*</span><span class="w"> </span><span class="n">COLOR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@&quot;COLOR&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>and in the implementation of the PreferencesController class:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span>− (void) awakeFromNib {
+    defaults = [NSUserDefaults
+        standardUserDefaults];
+
+// Remember user preferences
+// When launching Preferences
+    revertDict = [NSDictionary
+        dictionaryWithDictionary:	
+        [defaults dictionaryRepresentation]];
+    [revertDict retain];
+
+// Display the preferences
+    [self displayPrefsWithDict: 
+        revertDict];
+}
+</pre></div>
+</div>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span>− (IBAction) statusAction:  (id)  sender {
+    if ( sender != statusMatrix ) {
+        return;
+    }
+    {
+    // We get the tag on the selection
+        int tag = [[sender selectedCell] tag];
+
+    // We make changes in our preferences instance
+        if ( tag == 0 ) {
+            [defaults setObject:PERCENT forKey: STATUS];
+        } else if ( tag == 1 ) {
+            [defaults setObject:COLOR forKey: STATUS];
+        }
+
+    // We synchronize to save the defaults
+        [defaults synchronize];
+        [revertButton setEnabled: YES];
+    }
+}
+</pre></div>
+</div>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span>− (IBAction) statusAction:  (id)  sender {
+    if ( sender != statusMatrix )
+        return;
+
+// We display the preferences with the default values
+    [self displayPrefsWithDict: revertDict];
+    [revertButton setEnabled: NO]
+}
+</pre></div>
+</div>
+<p>We would however like the changes made in the preferences to reflect on our application <!-- (for example ....) -->. A first solution would be to pass the messages directly to our main window.</p>
+<p>Let’s be more stylish :-)</p>
+<p>It is possible that preferences affect other parts of our application. For this we will use another great classic of Design Patterns: The Observer.</p>
+</section>
+<section id="the-observer-design-pattern">
+<h2>The Observer Design Pattern<a class="headerlink" href="#the-observer-design-pattern" title="Permalink to this heading">#</a></h2>
+<p>This Design Pattern (figure 5) makes it easier to maintain consistency when working with objects that depend on the state of another object.</p>
+<p>The “observer” objects then register with the object they want to monitor. This one then sends, to all the observers, a message during a change of state.</p>
+<figure>
+<p><img alt="Figure 5 - The Observer design pattern" src="AppsWithGorm/Todo/Figure%205.png" /></p>
+<figcaption>Figure 5 - The Observer design pattern</figcaption>
+</figure>
+<p>This pattern also makes it possible to send messages to objects that we do not necessarily know, or even whose number evolves dynamically while the application is running.</p>
+</section>
+<section id="notifications">
+<h2>Notifications<a class="headerlink" href="#notifications" title="Permalink to this heading">#</a></h2>
+<figure>
+<p><img alt="Figure 6 - GNUstep Notifications" src="AppsWithGorm/Todo/Figure%206.png" /></p>
+<figcaption>Figure 6 - GNUstep Notifications</figcaption>
+</figure>
+<p>GNUstep actually has a practical implementation of this Design Pattern, through notifications. A notification is a message that any object can send to an <code class="docutils literal notranslate"><span class="pre">NSNotificationCenter</span></code> object, which will centralize the notifications received.</p>
+<p>If one or more other objects are interested in a given type of message, or coming from a given object, they register as receivers with the NSNotificationCenter. The latter thus serves as a switcher (see figure 6 on the previous page). This organization makes it very simple to send distributed notifications (to remote objects, from another application, on the same machine or simply across the network), by simply changing object “pointer” . All you have to do is replace the <code class="docutils literal notranslate"><span class="pre">NSNotificationCenter</span></code> object with an NSDistributedNotificationCenter object.</p>
+<p>Commonly used <code class="docutils literal notranslate"><span class="pre">NSNotificationCenter</span></code> methods are:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">postNotificationName:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">notificationName</span>
+<span class="w">                       </span><span class="nl">object</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">anObject</span>
+<span class="w">                     </span><span class="nl">userInfo</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSDictionary</span><span class="o">*</span><span class="p">)</span> <span class="nv">userInfo</span>
+</pre></div>
+</div>
+<p>to post a notification,</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">addObserver:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">anObserver</span><span class="w"> </span>
+<span class="w">            </span><span class="nl">selector</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span> <span class="nv">aSelector</span>
+<span class="w">                </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">notificationName</span>
+<span class="w">              </span><span class="nl">object</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">anObject</span>
+</pre></div>
+</div>
+<p>to add an observer, and</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">removeObserver:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">anObserver</span>
+<span class="w">                   </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nv">notificationName</span>
+<span class="w">                 </span><span class="nl">object</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nv">anObject</span>
+</pre></div>
+</div>
+<p>to delete an observer.</p>
+</section>
+<section id="using-notifications">
+<h2>Using notifications<a class="headerlink" href="#using-notifications" title="Permalink to this heading">#</a></h2>
+<p>NSUserDefaults already posts a notification when preferences have been synced. This notification is called <code class="docutils literal notranslate"><span class="pre">NSUserDefaultsDidChangeNotification</span></code>. So we just need to add an Observer in the classes that want to be aware of the change, here in <code class="docutils literal notranslate"><span class="pre">TodoController</span></code>.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">-init</span></code> method of <code class="docutils literal notranslate"><span class="pre">TodoController</span></code> we therefore add:</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="bp">NSNotificationCenter</span><span class="w"> </span><span class="n">defaultCenter</span><span class="p">]</span>
+<span class="w">    </span><span class="nl">addObserver</span><span class="p">:</span><span class="w"> </span><span class="nb">self</span>
+<span class="w">       </span><span class="nl">selector</span><span class="p">:</span><span class="w"> </span><span class="k">@selector</span><span class="p">(</span><span class="n">prefsChanged</span><span class="o">:</span><span class="p">)</span>
+<span class="w">           </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="n">NSUserDefaultsDidChangeNotification</span>
+<span class="w">         </span><span class="nl">object</span><span class="p">:</span><span class="w"> </span><span class="nb">nil</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>This addition tells the <code class="docutils literal notranslate"><span class="pre">NSNotificationCenter</span></code> that we are adding the TodoController (self) object back as an observer for the    <code class="docutils literal notranslate"><span class="pre">NSUserDefaultsDidChangeNotification</span></code> notification.</p>
+<p>When the observer receives the notification, the prefsChanged: method will be called with the notification parameter (an <code class="docutils literal notranslate"><span class="pre">NSNotification</span></code> object).</p>
+<p>The object of the notification will be the instance of <code class="docutils literal notranslate"><span class="pre">NSUserDefaults</span></code>. We then just need to apply the changes to our interface.</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span>− (void) prefsChanged: (NSNotification*) aNotification {
+    // Retrieve the UserDefaults preference
+    NSUserDefaults ∗defaults = [aNotification object];
+    // Call (private) methods that will process the different changes 
+    [self _reloadWithTableColumns:
+        [defaults objectForKey: VIEW]];
+    [self _changeStatusDisplay:
+        [defaults objectForKey: DISPLAYSTATUS]];
+}
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>We have thus seen in this article an important particularity of GNUstep, the use of a database accessible in plain text, containing the faults of all the applications and of the environment.</p>
+<p>This fault management allows the programmer to easily and in a standard way save the state of his application and the preferences of the user.</p>
+<p>The use of notifications is another example of a Design Pattern directly available in the GNUstep framework, allowing moreover inter-application communication (with notifications
+distributed).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">#gnustep</span></code> irc channel on the LibreraChat network, and the <code class="docutils literal notranslate"><span class="pre">gnu.gnustep.discuss</span></code> mailing list is a good place to get help if needed. Also, don’t forget the many sites on GNUstep, Cocoa or OpenStep, like the ones referenced at the end of this article!</p>
+<p>Do not hesitate to contact us if you have any comments or suggestions for us.</p>
+<section id="contact-the-authors">
+<h3>Contact the authors<a class="headerlink" href="#contact-the-authors" title="Permalink to this heading">#</a></h3>
+<p>Nicolas Roard, <a class="reference external" href="mailto:nicolas&#37;&#52;&#48;roard&#46;com">nicolas<span>&#64;</span>roard<span>&#46;</span>com</a><br />
+Fabien Vallon, <a class="reference external" href="mailto:fabien&#37;&#52;&#48;tuxfamily&#46;org">fabien<span>&#64;</span>tuxfamily<span>&#46;</span>org</a></p>
+</section>
+<section id="more-reading">
+<h3>More reading<a class="headerlink" href="#more-reading" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.apple.com/documentation/foundation/nsuserdefaults?language=objc">Apple NSUserDefaults documentation</a></p></li>
+<li><p><a class="reference external" href="http://gnustep.org/resources/documentation/Developer/Base/Reference/NSUserDefaults.html#class$NSUserDefaults">GNUstep NSUserDefaults documentation</a></p></li>
+<li><p><a class="reference external" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043i">Notification Programming Topics</a></p></li>
+<li><p><a class="reference external" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i">Preferences and Settings Programming Guide</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../HelpfulWebsites.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Helpful Websites</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Tutorial1.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">1 - Programming under GNUstep</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, GNUstep contributors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">2 - NSWindowController and Design Pattern MVC</a><ul>
+<li><a class="reference internal" href="#notes-on-the-user-interface">Notes on the user interface</a></li>
+<li><a class="reference internal" href="#some-classes-and-widgets">Some classes and widgets …</a><ul>
+<li><a class="reference internal" href="#nsview-and-nscell">NSView and NSCell</a></li>
+<li><a class="reference internal" href="#nsmatrix">NSMatrix</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-nswindowcontroller">Using NSWindowController</a></li>
+<li><a class="reference internal" href="#nsuserdefaults-managing-preferences">NSUserDefaults: Managing preferences</a></li>
+<li><a class="reference internal" href="#access-to-defaults-using-the-nsuserdefaults-class">Access to defaults using the NSUserDefaults class</a></li>
+<li><a class="reference internal" href="#implementation-for-todo-app">Implementation for Todo.app</a></li>
+<li><a class="reference internal" href="#the-observer-design-pattern">The Observer Design Pattern</a></li>
+<li><a class="reference internal" href="#notifications">Notifications</a></li>
+<li><a class="reference internal" href="#using-notifications">Using notifications</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a><ul>
+<li><a class="reference internal" href="#contact-the-authors">Contact the authors</a></li>
+<li><a class="reference internal" href="#more-reading">More reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=172f29ee"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>
