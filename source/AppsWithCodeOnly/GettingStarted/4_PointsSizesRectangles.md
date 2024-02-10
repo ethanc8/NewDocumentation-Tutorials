@@ -2,24 +2,6 @@
 
 The GNUstep base library defines some useful structs for dealing with two dimensional geometry: `NSPoint`, `NSSize` and `NSRect`. It is worth to quickly review them here, before beginning.
 
-  
-
-------------------------------------------------------------------------
-
-<span id="CHILD_LINKS">**Subsections**</span>
-
--   <a href="node2.html" id="tex2html36">4.1 NSPoint</a>
--   <a href="node3.html" id="tex2html37">4.2 NSSize</a>
--   <a href="node4.html" id="tex2html38">4.3 NSRect</a>
--   <a href="node5.html" id="tex2html39">4.4 Geometry Functions</a>
-
-  
-
-------------------------------------------------------------------------
-
-
-
-
 4.1 NSPoint
 ---------------------------------------------------------
 

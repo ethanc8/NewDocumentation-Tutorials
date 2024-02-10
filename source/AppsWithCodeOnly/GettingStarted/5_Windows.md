@@ -1,26 +1,4 @@
 # 5 - Adding a Window to your Application
-  
-
-------------------------------------------------------------------------
-
-<span id="CHILD_LINKS">**Subsections**</span>
-
--   <a href="node7.html" id="tex2html88">5.1 Window Attributes</a>
--   <a href="node8.html" id="tex2html89">5.2 Creating a Window</a>
--   <a href="node9.html" id="tex2html90">5.3 Setting the title of a window</a>
--   <a href="node10.html" id="tex2html91">5.4 Ordering Front a window</a>
--   <a href="node11.html" id="tex2html92">5.5 Integrating the window with your application</a>
-    -   <a href="node12.html" id="tex2html93">5.5.1 The organization of start-up code</a>
-
-      
--   <a href="node13.html" id="tex2html94">5.6 Source Code</a>
-
-  
-
-------------------------------------------------------------------------
-
-
-
 
 5.1 Window Attributes
 -------------------------------------------------------------------

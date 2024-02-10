@@ -2,24 +2,6 @@
 
 We are now going to add a button inside our window. But first, we need to prepare the ground with a very short introduction to the wonderful `NSView` class.
 
-  
-
-------------------------------------------------------------------------
-
-<span id="CHILD_LINKS">**Subsections**</span>
-
--   <a href="node15.html" id="tex2html172">6.1 A Quick Introduction to Views</a>
--   <a href="node16.html" id="tex2html173">6.2 Creating a Button</a>
--   <a href="node17.html" id="tex2html174">6.3 Putting the button in the window</a>
--   <a href="node18.html" id="tex2html175">6.4 Source Code</a>
-
-  
-
-------------------------------------------------------------------------
-
-
-
-
 6.1 A Quick Introduction to Views
 -------------------------------------------------------------------------------
 
