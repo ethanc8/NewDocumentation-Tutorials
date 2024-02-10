@@ -22,7 +22,7 @@ titlesonly: true
 4_Money/index.md
 5_Overview/index.md
 6_LunarCalendar/index.md
-7_NSLocalizationService/index.md
+7_NSLookupService/index.md
 Todo/index.md
 HelpfulWebsites.md
 ```

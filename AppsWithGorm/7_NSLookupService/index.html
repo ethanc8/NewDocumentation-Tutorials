@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Todo.app" href="../Todo/index.html" /><link rel="prev" title="6 - LunarCalendar" href="../6_LunarCalendar/index.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>7 - NSLocalizationService - GNUstep Tutorials 2024 documentation</title>
+        <title>7 - NSLookupService - GNUstep Tutorials 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -136,7 +136,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -183,7 +183,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5_Overview/index.html">5 - Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../6_LunarCalendar/index.html">6 - LunarCalendar</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">7 - NSLocalizationService</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">7 - NSLookupService</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../Todo/index.html">Todo.app</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Todo.app</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial1.html">1 - Programming under GNUstep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Todo/Tutorial2.html">2 - NSWindowController and Design Pattern MVC</a></li>
@@ -234,16 +234,14 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="nslocalizationservice">
-<h1>7 - NSLocalizationService<a class="headerlink" href="#nslocalizationservice" title="Permalink to this heading">#</a></h1>
-<section id="nslookupservice">
-<h2>NSLookupService<a class="headerlink" href="#nslookupservice" title="Permalink to this heading">#</a></h2>
+          <section id="nslookupservice">
+<h1>7 - NSLookupService<a class="headerlink" href="#nslookupservice" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="http://developer.apple.com/documentation/Cocoa/Conceptual/SysServices/index.html">System
 service</a>
 is an important feature of GNUstep, which connects applications
@@ -268,20 +266,20 @@ I’ll make an simple application which can look up the address of a
 hostname. That’s the graphic version of <strong>nslookup</strong>.</p>
 <p>Open Gorm, make an interface looks like this:</p>
 <p><strong>Figure 5-1. Interface of NSLookupService</strong></p>
-<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-01.jpg" /></p>
+<p><img alt="" src="../../_images/NSLookupService-01.jpg" /></p>
 <p>Create a subclass of NSObject called “Controller”, and add two outlets:
 “hostname” and “address”. Connect the outlet to the NSTextField in the
 interface.</p>
 <p><strong>Figure 5-2. Connect outlet</strong></p>
-<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-02.jpg" /></p>
+<p><img alt="" src="../../_images/NSLookupService-02.jpg" /></p>
 <p>Add an action called “action:” in Controller and connect action of
 NSTextField to “action:”</p>
 <p><strong>Figure 5-3. Connect action.</strong></p>
-<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-03.jpg" /></p>
+<p><img alt="" src="../../_images/NSLookupService-03.jpg" /></p>
 <p>Connect delegate of NSOwner (NSApp in this case) to Controller since
 service is associated with NSApp. It will be useful in the later.</p>
 <p><strong>Figure 5-4. Connect delegate of NSApp</strong></p>
-<p><img alt="" src="AppsWithGorm/7_NSLocalizationService/GSPT_files/NSLookupService-04.jpg" /></p>
+<p><img alt="" src="../../_images/NSLookupService-04.jpg" /></p>
 <p>Modify Controller.m</p>
 <p><code class="docutils literal notranslate"><span class="pre">Controller.m</span></code></p>
 <div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">action:</span><span class="w"> </span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
@@ -500,7 +498,6 @@ You can test it in <span class="APPLICATION">Ink</span> again.</p>
 <a class="reference external" href="http://gnustep.made-it.com/GSPT/NSLookupService/NSLookupService-src.tar.gz">NSLookupService-src.tar.gz</a></p>
 <hr class="docutils" />
 </section>
-</section>
 
         </article>
       </div>
@@ -545,27 +542,8 @@ You can test it in <span class="APPLICATION">Ink</span> again.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">7 - NSLocalizationService</a><ul>
-<li><a class="reference internal" href="#nslookupservice">NSLookupService</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

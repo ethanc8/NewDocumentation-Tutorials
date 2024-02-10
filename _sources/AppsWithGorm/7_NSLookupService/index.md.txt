@@ -1,7 +1,4 @@
-# 7 - NSLocalizationService
-
-NSLookupService
------------------------------------------
+# 7 - NSLookupService
 
 [System
 service](http://developer.apple.com/documentation/Cocoa/Conceptual/SysServices/index.html)
