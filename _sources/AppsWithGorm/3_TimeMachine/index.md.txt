@@ -1,4 +1,4 @@
-# 3 - TimeMachine - a single window application
+# 3 - TimeMachine
 
 Your second app, a clock application. This is a single-window app made without ProjectCenter. Of course, you can use ProjectCenter if you want.
 
